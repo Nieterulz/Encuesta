@@ -14,40 +14,51 @@
         <h3>
             CÓDIGO ASIGNATURA
         </h3>
-        <form action="encuesta.php" method="get">
-            <p>
-                Titulación
-                <input
-                    type="number"
-                    name="titulacion"
-                    maxlength="4"
-                    min="0000"
-                    max="9999"
-                />
-            </p>
-            <p>
-                Asignatura:
-                <input type="number" name="asignatura" min="000" max="999" />
-            </p>
-            <p>Grupo: <input type="number" name="grupo" min="00" max="99" /></p>
-            <h3>
-                INFORMACIÓN PERSONAL Y ACADÉMICA DE LOS ESTUDIANTES
-            </h3>
-            <div class="round">
+        <form action="encuesta.php" method="get" class="form-group">
+            <div class="round1">
                 <p>
-                    Edad: <input type="radio" name="edad" value="-19" /> &le;19
+                    <i> Titulación:</i>
+                    <input
+                        type="number"
+                        name="titulacion"
+                        maxlength="4"
+                        min="0000"
+                        max="9999"
+                    />
+                </p>
+                <p>
+                    <i>Asignatura:</i>
+                    <input
+                        type="number"
+                        name="asignatura"
+                        min="000"
+                        max="999"
+                    />
+                </p>
+                <p>
+                    <i> Grupo:</i>
+                    <input type="number" name="grupo" min="00" max="99" />
+                </p>
+            </div>
+            <div class="round2">
+                <h3>
+                    INFORMACIÓN PERSONAL Y ACADÉMICA DE LOS ESTUDIANTES
+                </h3>
+                <p>
+                    <i>Edad:</i>
+                    <input type="radio" name="edad" value="-19" /> &le;19
                     <input type="radio" name="edad" value="20-21" /> 20-21
                     <input type="radio" name="edad" value="22-23" /> 22-23
                     <input type="radio" name="edad" value="24-25" /> 24-25
                     <input type="radio" name="edad" value="+25" /> &ge;25
                 </p>
                 <p>
-                    Sexo:
+                    <i> Sexo:</i>
                     <input type="radio" name="sexo" value="hombre" /> Hombre
                     <input type="radio" name="sexo" value="mujer" /> Mujer
                 </p>
                 <p>
-                    Curso más alto en el que estás matriculado:
+                    <i> Curso más alto en el que estás matriculado:</i>
                     <input type="radio" name="curso-alto" value="1" /> 1º
                     <input type="radio" name="curso-alto" value="2" /> 2º
                     <input type="radio" name="curso-alto" value="3" /> 3º
@@ -56,7 +67,7 @@
                     <input type="radio" name="curso-alto" value="6" /> 6º
                 </p>
                 <p>
-                    Curso más bajo en el que estás matriculado:
+                    <i> Curso más bajo en el que estás matriculado:</i>
                     <input type="radio" name="curso-bajo" value="1" /> 1º
                     <input type="radio" name="curso-bajo" value="2" /> 2º
                     <input type="radio" name="curso-bajo" value="3" /> 3º
@@ -65,7 +76,7 @@
                     <input type="radio" name="curso-bajo" value="6" /> 6º
                 </p>
                 <p>
-                    Veces que te has matriculado en esta asignatura:
+                    <i>Veces que te has matriculado en esta asignatura:</i>
                     <input type="radio" name="matriculaciones" value="1" /> 1
                     <input type="radio" name="matriculaciones" value="2" /> 2
                     <input type="radio" name="matriculaciones" value="3" /> 3
@@ -73,14 +84,14 @@
                     &gt;3
                 </p>
                 <p>
-                    Veces que te has examinado en esta asignatura:
+                    <i>Veces que te has examinado en esta asignatura:</i>
                     <input type="radio" name="examinaciones" value="1" /> 1
                     <input type="radio" name="examinaciones" value="2" /> 2
                     <input type="radio" name="examinaciones" value="3" /> 3
                     <input type="radio" name="examinaciones" value="+3" /> &gt;3
                 </p>
                 <p>
-                    La asignatura me interesa:
+                    <i>La asignatura me interesa:</i>
                     <input type="radio" name="interes" value="nada" /> Nada
                     <input type="radio" name="interes" value="algo" /> Algo
                     <input type="radio" name="interes" value="bastante" />
@@ -88,7 +99,7 @@
                     <input type="radio" name="interes" value="mucho" /> Mucho
                 </p>
                 <p>
-                    Hago uso de las tutorías:
+                    <i>Hago uso de las tutorías:</i>
                     <input type="radio" name="tutorias" value="nada" /> Nada
                     <input type="radio" name="tutorias" value="algo" /> Algo
                     <input type="radio" name="tutorias" value="bastante" />
@@ -96,7 +107,7 @@
                     <input type="radio" name="tutorias" value="mucho" /> Mucho
                 </p>
                 <p>
-                    Dificultad de esta Asignatura:
+                    <i>Dificultad de esta Asignatura:</i>
                     <input type="radio" name="dificultad" value="baja" /> Baja
                     <input type="radio" name="dificultad" value="media" /> Media
                     <input type="radio" name="dificultad" value="alta" /> Alta
@@ -104,7 +115,7 @@
                     Muy alta
                 </p>
                 <p>
-                    Calificación esperada:
+                    <i>Calificación esperada:</i>
                     <input type="radio" name="calificacion" value="np" /> N.P.
                     <input type="radio" name="calificacion" value="sus" /> Sus.
                     <input type="radio" name="calificacion" value="apro" />
@@ -116,7 +127,7 @@
                     Mat. Hon.
                 </p>
                 <p>
-                    Asistencia clase (% de horas lectivas):
+                    <i>Asistencia clase (% de horas lectivas):</i>
                     <input type="radio" name="asistencia" value="-50" /> Menos
                     50%
                     <input type="radio" name="asistencia" value="50-80" /> Entre
@@ -125,16 +136,21 @@
                     80%
                 </p>
             </div>
-            <p>
-                A continuación se presentan una serie de cuestiones relativas a
-                la docencia en esta asignatura. Tu colaboración es necesaria y
-                consiste en señalar en la escala de respuesta tu grado de
-                acuerdo con cada una de las afirmaciones, teniendo en cuenta que
-                "1" significa "totalmente en desacuerdo" y "5" "totalmente de
-                acuerdo", Si el enunciado no procede o no tienes suficiente
-                información, marca la opción NS. En nombre de la Universidad de
-                Cádiz, GRACIAS POR TU PARTICIPACIÓN.
-            </p>
+            <div class="round3">
+                <p>
+                    <i class="parrafo">
+                        A continuación se presentan una serie de cuestiones
+                        relativas a la docencia en esta asignatura. Tu
+                        colaboración es necesaria y consiste en señalar en la
+                        escala de respuesta tu grado de acuerdo con cada una de
+                        las afirmaciones, teniendo en cuenta que "1" significa
+                        "totalmente en desacuerdo" y "5" "totalmente de
+                        acuerdo", Si el enunciado no procede o no tienes
+                        suficiente información, marca la opción NS. En nombre de
+                        la Universidad de Cádiz, GRACIAS POR TU PARTICIPACIÓN.
+                    </i>
+                </p>
+            </div>
             <p>
                 CÓD. PROF. 1
                 <input
@@ -148,7 +164,7 @@
             <h3>PLANIFICACIÓN DE LA ENSEÑANZA Y APRENDIZAJE</h3>
             <p>
                 1.- El profesor/a informa sobre los distintos aspectos de la
-                guía docente o pprograma de la asignatura (objetivos,
+                guía docente o programa de la asignatura (objetivos,
                 actividades, contenidos del temario, metodología, bibliografía,
                 sistemas de evaluación,...):
                 <input type="radio" name="1" value="ns" /> NS
