@@ -4,14 +4,14 @@
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<title>Encuesta</title>
-	<link rel='stylesheet' href='css/encuesta.css' />
+	<link rel='stylesheet' href='encuesta.css' />
 </head>
 <body>
 	<?php
 
 function inputRadio($name, $question, $options)
 {
-    echo "<p>";
+    echo "<p class='cuadro'>";
     echo "<i>" . $question . "</i>";
     for ($i = 0; $i < count($options); $i++) {
         $op = $options[$i];
@@ -108,18 +108,18 @@ echo "
 				relativas a la docencia en esta asignatura. Tu
 				colaboración es necesaria y consiste en señalar en
 				la escala de respuesta tu grado de acuerdo con cada
-				una de las afirmaciones, teniendo en cuenta que '1'
-				significa 'totalmente en desacuerdo' y '5'
-				'totalmente de acuerdo', Si el enunciado no procede
+				una de las afirmaciones, teniendo en cuenta que <b>'1'</b>
+				significa 'totalmente en desacuerdo' y <b>'5'
+				'totalmente de acuerdo'</b>, Si el enunciado no procede
 				o no tienes suficiente información, marca la opción
-				NS. En nombre de la Universidad de Cádiz, GRACIAS
-				POR TU PARTICIPACIÓN.
+				NS. <b>En nombre de la Universidad de Cádiz, GRACIAS
+				POR TU PARTICIPACIÓN.</b>
 			</i>
 		</p>
 	</div>
 </div>
-<p>
-	CÓD. PROF. 1
+<p class='prof'>
+	<b>Código Profesor</b>:
 	<input
 		type='number'
 		name='codigo-prof'
@@ -140,8 +140,8 @@ inputRadio("1", $question, $options);
 
 echo "</p>
 		<h3>DESARROLLO DE LA DOCENCIA</h3>
-		<h4>Cumplimiento de las obligaciones docentes (del encargo docente)</h4>
-	<p>";
+		<div  class='cuadro'>
+		<h4>Cumplimiento de las obligaciones docentes (del encargo docente)</h4>";
 
 $question = "2.- Imparte las clases en el horario fijado: ";
 inputRadio("2", $question, $options);
@@ -151,7 +151,9 @@ inputRadio("3", $question, $options);
 
 $question = "4.- Cumple adecuadamente su labor de tutoría (presencial o virtual): ";
 inputRadio("4", $question, $options);
+echo "</div>";
 
+echo "<div class='cuadro'>";
 echo "<h4>Cumplimiento de la Planificación</h4>";
 
 $question = "5.- Se ajusta a la planificación de la asignatura: ";
@@ -167,7 +169,9 @@ inputRadio("7", $question, $options);
 $question = "8.- La bibliografía y otras fuentes de información recomendadas
 en el programa son útiles para el aprendizaje de la asignatura: ";
 inputRadio("8", $question, $options);
+echo "</div>";
 
+echo "<div class='cuadro'>";
 echo "<h4>Metodología docente</h4>";
 
 $question = "9.- El/la profesor/a organiza bien las actividades que se
@@ -176,9 +180,11 @@ inputRadio("9", $question, $options);
 
 $question = "10.- Utiliza recursos didácticos (pizarra, transparencias,
 mediosaudiovisuales, material de apoyo en red virtual...) que
-facilitan el aprendizaje: ";
+facilitan el aprendizaje:";
 inputRadio("10", $question, $options);
+echo "</div>";
 
+echo "<div class='cuadro'>";
 echo "<h4>Competencias docentes desarrolladas por el/la profesor/a</h4>";
 
 $question = "11.- Explica con claridad y resalta los contenidos importantes: ";
@@ -210,7 +216,9 @@ inputRadio("18", $question, $options);
 
 $question = "19.- Es respetuoso/a en el trato con los/las estudiantes: ";
 inputRadio("19", $question, $options);
+echo "</div>";
 
+echo "<div class='cuadro'>";
 echo "<h4>Sistemas de evaluación</h4>";
 
 $question = "20.- Tengo claro lo que se me va a exigir para superar esta
@@ -220,19 +228,22 @@ inputRadio("20", $question, $options);
 $question = "21.- Los criterios y sistemas de evaluación me parecen
 adecuados, en el contexto de la asignatura: ";
 inputRadio("21", $question, $options);
+echo "</div>";
 
+echo "<div class='cuadro'>";
 echo "<h4>Resultados</h4>";
 
-$question = "22.- Las actividades desarrolladas (teóricas, prácticas, de
-trabajo individual, en grupo, ...) contribuyen a alcanzar los
-objetivos de la asignatura: ";
+$question = "22.-Las actividades desarrolladas(teóricas, prácticas, de
+trabajo individual, en grupo,...) contribuyen a alcanzar los
+objetivos de la asignatura:";
 inputRadio("22", $question, $options);
 
 $question = "23.- Estoy satisfecho/a con la labor docente de este/a
 profesor/a: ";
 inputRadio("23", $question, $options);
+echo "</div>";
 
-echo "<input type='submit' value='Enviar' /></form>";
+echo "<input type='submit' value='Enviar' class='submit'/></form>";
 ?>
 </body>
 </html>
