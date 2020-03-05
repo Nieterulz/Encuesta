@@ -31,19 +31,19 @@ echo "<form action='encuesta.php' method='get' class='form-group'>";
 echo "<div class='parent'>";
 echo "<div class='round1'>
 			<p>
-				<i> Titulación: </i>
+				<i> <b>Titulación:</b> </i>
 				<input
 					type='number' name='titulacion' maxlength='4' min='0000' max='9999'
 				/>
 			</p>
 			<p>
-				<i>Asignatura: </i>
+				<i><b>Asignatura:</b> </i>
 				<input
 					type='number' name='asignatura' min='000' max='999'
 				/>
 			</p>
 			<p>
-				<i> Grupo: </i>
+				<i> <b>Grupo:</b> </i>
 				<input type='number' name='grupo' min='00' max='99' />
 			</p>
 		</div>";
