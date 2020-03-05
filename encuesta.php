@@ -8,155 +8,98 @@
 </head>
 <body>
 	<?php
+
+function inputRadio($name, $question, $options)
+{
+    echo "<p>";
+    echo "<i>" . $question . "</i>";
+    for ($i = 0; $i < count($options); $i++) {
+        $op = $options[$i];
+        echo "<input type='radio' name='" . $name . "' value='" . strtolower($op) . "' />" . $op;
+    }
+    echo "</p>";
+}
+
 echo "<h2>
-ENCUESTA SOBRE LA OPINIÓN DE LOS/AS ESTUDIANTES SOBRE LA LABOR
-DOCENTE DEL PROFESORADO
-</h2>
-<h3>
-CÓDIGO ASIGNATURA
-</h3>
-<form action='encuesta.php' method='get' class='form-group'>
-<div class='parent'>
-	<div class='round1'>
-		<p>
-			<i> Titulación:</i>
-			<input
-				type='number'
-				name='titulacion'
-				maxlength='4'
-				min='0000'
-				max='9999'
-			/>
-		</p>
-		<p>
-			<i>Asignatura:</i>
-			<input
-				type='number'
-				name='asignatura'
-				min='000'
-				max='999'
-			/>
-		</p>
-		<p>
-			<i> Grupo:</i>
-			<input type='number' name='grupo' min='00' max='99' />
-		</p>
-	</div>
-	<div class='round2'>
-		<h3>
-			INFORMACIÓN PERSONAL Y ACADÉMICA DE LOS ESTUDIANTES
-		</h3>
-		<p>
-			<i>Edad:</i>
-			<input type='radio' name='edad' value='-19' /> &le;19
-			<input type='radio' name='edad' value='20-21' /> 20-21
-			<input type='radio' name='edad' value='22-23' /> 22-23
-			<input type='radio' name='edad' value='24-25' /> 24-25
-			<input type='radio' name='edad' value='+25' /> &ge;25
-		</p>
-		<p>
-			<i> Sexo:</i>
-			<input type='radio' name='sexo' value='hombre' /> Hombre
-			<input type='radio' name='sexo' value='mujer' /> Mujer
-		</p>
-		<p>
-			<i> Curso más alto en el que estás matriculado:</i>
-			<input type='radio' name='curso-alto' value='1' /> 1º
-			<input type='radio' name='curso-alto' value='2' /> 2º
-			<input type='radio' name='curso-alto' value='3' /> 3º
-			<input type='radio' name='curso-alto' value='4' /> 4º
-			<input type='radio' name='curso-alto' value='5' /> 5º
-			<input type='radio' name='curso-alto' value='6' /> 6º
-		</p>
-		<p>
-			<i> Curso más bajo en el que estás matriculado:</i>
-			<input type='radio' name='curso-bajo' value='1' /> 1º
-			<input type='radio' name='curso-bajo' value='2' /> 2º
-			<input type='radio' name='curso-bajo' value='3' /> 3º
-			<input type='radio' name='curso-bajo' value='4' /> 4º
-			<input type='radio' name='curso-bajo' value='5' /> 5º
-			<input type='radio' name='curso-bajo' value='6' /> 6º
-		</p>
-		<p>
-			<i>Veces que te has matriculado en esta asignatura:</i>
-			<input type='radio' name='matriculaciones' value='1' />
-			1
-			<input type='radio' name='matriculaciones' value='2' />
-			2
-			<input type='radio' name='matriculaciones' value='3' />
-			3
-			<input type='radio' name='matriculaciones' value='+3' />
-			&gt;3
-		</p>
-		<p>
-			<i>Veces que te has examinado en esta asignatura:</i>
-			<input type='radio' name='examinaciones' value='1' /> 1
-			<input type='radio' name='examinaciones' value='2' /> 2
-			<input type='radio' name='examinaciones' value='3' /> 3
-			<input type='radio' name='examinaciones' value='+3' />
-			&gt;3
-		</p>
-		<p>
-			<i>La asignatura me interesa:</i>
-			<input type='radio' name='interes' value='nada' /> Nada
-			<input type='radio' name='interes' value='algo' /> Algo
-			<input type='radio' name='interes' value='bastante' />
-			Bastante
-			<input type='radio' name='interes' value='mucho' />
-			Mucho
-		</p>
-		<p>
-			<i>Hago uso de las tutorías:</i>
-			<input type='radio' name='tutorias' value='nada' /> Nada
-			<input type='radio' name='tutorias' value='algo' /> Algo
-			<input type='radio' name='tutorias' value='bastante' />
-			Bastante
-			<input type='radio' name='tutorias' value='mucho' />
-			Mucho
-		</p>
-		<p>
-			<i>Dificultad de esta Asignatura:</i>
-			<input type='radio' name='dificultad' value='baja' />
-			Baja
-			<input type='radio' name='dificultad' value='media' />
-			Media
-			<input type='radio' name='dificultad' value='alta' />
-			Alta
-			<input
-				type='radio'
-				name='dificultad'
-				value='muy-alta'
-			/>
-			Muy alta
-		</p>
-		<p>
-			<i>Calificación esperada:</i>
-			<input type='radio' name='calificacion' value='np' />
-			N.P.
-			<input type='radio' name='calificacion' value='sus' />
-			Sus.
-			<input type='radio' name='calificacion' value='apro' />
-			Apro.
-			<input type='radio' name='calificacion' value='not' />
-			Not.
-			<input type='radio' name='calificacion' value='sobr' />
-			Sobr.
-			<input
-				type='radio'
-				name='calificacion'
-				value='mat-hon'
-			/>
-			Mat. Hon.
-		</p>
-		<p>
-			<i>Asistencia clase (% de horas lectivas):</i>
-			<input type='radio' name='asistencia' value='-50' />
-			Menos 50%
-			<input type='radio' name='asistencia' value='50-80' />
-			Entre 50% y 80%
-			<input type='radio' name='asistencia' value='+80' /> Más
-			de 80%
-		</p>
+		ENCUESTA SOBRE LA OPINIÓN DE LOS/AS ESTUDIANTES SOBRE LA LABOR
+		DOCENTE DEL PROFESORADO
+	</h2>
+	<h3>
+		CÓDIGO ASIGNATURA
+	</h3>";
+echo "<form action='encuesta.php' method='get' class='form-group'>";
+echo "<div class='parent'>";
+echo "<div class='round1'>
+			<p>
+				<i> Titulación: </i>
+				<input
+					type='number' name='titulacion' maxlength='4' min='0000' max='9999'
+				/>
+			</p>
+			<p>
+				<i>Asignatura: </i>
+				<input
+					type='number' name='asignatura' min='000' max='999'
+				/>
+			</p>
+			<p>
+				<i> Grupo: </i>
+				<input type='number' name='grupo' min='00' max='99' />
+			</p>
+		</div>";
+echo "<div class='round2'>";
+echo "<h3> INFORMACIÓN PERSONAL Y ACADÉMICA DE LOS ESTUDIANTES </h3>";
+
+$name = "edad";
+$question = "Edad: ";
+$options = array(' &le;19', ' 20-21', ' 22-23', ' 24-25', ' &ge;25');
+inputRadio($name, $question, $options);
+
+$name = "sexo";
+$question = "Sexo: ";
+$options = array(' Hombre', ' Mujer');
+inputRadio($name, $question, $options);
+
+$name = "curso-alto";
+$question = "Curso más alto en el que estás matriculado: ";
+$options = array(' 1º', ' 2º', ' 3º', ' 4º', ' 5º', '6º');
+inputRadio($name, $question, $options);
+
+$name = "curso-bajo";
+$question = "Curso más bajo en el que estás matriculado: ";
+$options = array(' 1º', ' 2º', ' 3º', ' 4º', ' 5º', '6º');
+inputRadio($name, $question, $options);
+
+$name = "matriculaciones";
+$question = "Veces que te has matriculado en esta asignatura: ";
+$options = array(' 1', ' 2', ' 3', ' &gt;3');
+inputRadio($name, $question, $options);
+
+$name = "interes";
+$question = "La asignatura me interesa: ";
+inputRadio($name, $question, $options);
+
+$name = "tutorias";
+$question = "Hago uso de las tutorías: ";
+$options = array(' Nada', ' Algo', ' Bastante', ' Mucho');
+inputRadio($name, $question, $options);
+
+$name = "dificultad";
+$question = "Dificultad de esta Asignatura: ";
+$options = array(' Baja', ' Media', ' Alta', ' Muy Alta');
+inputRadio($name, $question, $options);
+
+$name = "calificacion";
+$question = "Calificación esperada: ";
+$options = array(' N.P.', ' Sus.', ' Apro.', ' Not.', ' Sobr.', ' Mat. Hon.');
+inputRadio($name, $question, $options);
+
+$name = "asistencia";
+$question = "Asistencia clase (% de horas lectivas): ";
+$options = array(' Menos 50%', ' Entre 50% y 80%', ' Más de 80%');
+inputRadio($name, $question, $options);
+
+echo "
 	</div>
 	<div class='round3'>
 		<p>
@@ -186,244 +129,110 @@ CÓDIGO ASIGNATURA
 	/>
 </p>
 <h3>PLANIFICACIÓN DE LA ENSEÑANZA Y APRENDIZAJE</h3>
-<p>
-	1.- El profesor/a informa sobre los distintos aspectos de la
+<p>";
+
+$options = array(" NS", " 1", " 2", " 3", " 4", " 5");
+$question = "1.- El profesor/a informa sobre los distintos aspectos de la
 	guía docente o programa de la asignatura (objetivos,
 	actividades, contenidos del temario, metodología, bibliografía,
-	sistemas de evaluación,...):
-	<input type='radio' name='1' value='ns' /> NS
-	<input type='radio' name='1' value='1' /> 1
-	<input type='radio' name='1' value='2' /> 2
-	<input type='radio' name='1' value='3' /> 3
-	<input type='radio' name='1' value='4' /> 4
-	<input type='radio' name='1' value='5' /> 5
-</p>
-<h3>DESARROLLO DE LA DOCENCIA</h3>
-<h4>
-	Cumplimiento de las obligaciones docentes (del encargo docente)
-</h4>
-<p>
-	2.- Imparte las clases en el horario fijado:
-	<input type='radio' name='2' value='ns' /> NS
-	<input type='radio' name='2' value='1' /> 1
-	<input type='radio' name='2' value='2' /> 2
-	<input type='radio' name='2' value='3' /> 3
-	<input type='radio' name='2' value='4' /> 4
-	<input type='radio' name='2' value='5' /> 5
-</p>
-<p>
-	3.- Asiste regularmente a clase:
-	<input type='radio' name='3' value='ns' /> NS
-	<input type='radio' name='3' value='1' /> 1
-	<input type='radio' name='3' value='2' /> 2
-	<input type='radio' name='3' value='3' /> 3
-	<input type='radio' name='3' value='4' /> 4
-	<input type='radio' name='3' value='5' /> 5
-</p>
-<p>
-	4.- Cumple adecuadamente su labor de tutoría (presencial o
-	virtual):
-	<input type='radio' name='4' value='ns' /> NS
-	<input type='radio' name='4' value='1' /> 1
-	<input type='radio' name='4' value='2' /> 2
-	<input type='radio' name='4' value='3' /> 3
-	<input type='radio' name='4' value='4' /> 4
-	<input type='radio' name='4' value='5' /> 5
-</p>
-<h4>
-	Cumplimiento de la Planificación
-</h4>
-<p>
-	5.- Se ajusta a la planificación de la asignatura:
-	<input type='radio' name='5' value='ns' /> NS
-	<input type='radio' name='5' value='1' /> 1
-	<input type='radio' name='5' value='2' /> 2
-	<input type='radio' name='5' value='3' /> 3
-	<input type='radio' name='5' value='4' /> 4
-	<input type='radio' name='5' value='5' /> 5
-</p>
-<p>
-	6.- Se han coordinado las actividades teóricas y prácticas
-	previstas:
-	<input type='radio' name='6' value='ns' /> NS
-	<input type='radio' name='6' value='1' /> 1
-	<input type='radio' name='6' value='2' /> 2
-	<input type='radio' name='6' value='3' /> 3
-	<input type='radio' name='6' value='4' /> 4
-	<input type='radio' name='6' value='5' /> 5
-</p>
-<p>
-	7.- Se ajusta a los sistemas de evaluación especificados en la
-	guía docente/programa de la asignatura:
-	<input type='radio' name='7' value='ns' /> NS
-	<input type='radio' name='7' value='1' /> 1
-	<input type='radio' name='7' value='2' /> 2
-	<input type='radio' name='7' value='3' /> 3
-	<input type='radio' name='7' value='4' /> 4
-	<input type='radio' name='7' value='5' /> 5
-</p>
-<p>
-	8.- La bibliografía y otras fuentes de información recomendadas
-	en el programa son útiles para el aprendizaje de la asignatura:
-	<input type='radio' name='8' value='ns' /> NS
-	<input type='radio' name='8' value='1' /> 1
-	<input type='radio' name='8' value='2' /> 2
-	<input type='radio' name='8' value='3' /> 3
-	<input type='radio' name='8' value='4' /> 4
-	<input type='radio' name='8' value='5' /> 5
-</p>
-<h4>Metodología docente</h4>
-<p>
-	9.- El/la profesor/a organiza bien las actividades que se
-	realizan en clase:
-	<input type='radio' name='9' value='ns' /> NS
-	<input type='radio' name='9' value='1' /> 1
-	<input type='radio' name='9' value='2' /> 2
-	<input type='radio' name='9' value='3' /> 3
-	<input type='radio' name='9' value='4' /> 4
-	<input type='radio' name='9' value='5' /> 5
-</p>
-<p>
-	10.- Utiliza recursos didácticos (pizarra, transparencias,
-	mediosaudiovisuales, material de apoyo en red virtual...) que
-	facilitan el aprendizaje:
-	<input type='radio' name='10' value='ns' /> NS
-	<input type='radio' name='10' value='1' /> 1
-	<input type='radio' name='10' value='2' /> 2
-	<input type='radio' name='10' value='3' /> 3
-	<input type='radio' name='10' value='4' /> 4
-	<input type='radio' name='10' value='5' /> 5
-</p>
-<h4>Competencias docentes desarrolladas por el/la profesor/a</h4>
-<p>
-	11.- Explica con claridad y resalta los contenidos importantes:
-	<input type='radio' name='11' value='ns' /> NS
-	<input type='radio' name='11' value='1' /> 1
-	<input type='radio' name='11' value='2' /> 2
-	<input type='radio' name='11' value='3' /> 3
-	<input type='radio' name='11' value='4' /> 4
-	<input type='radio' name='11' value='5' /> 5
-</p>
-<p>
-	12.- Se interesa por el grado de comprensión de sus
-	explicaciones:
-	<input type='radio' name='12' value='ns' /> NS
-	<input type='radio' name='12' value='1' /> 1
-	<input type='radio' name='12' value='2' /> 2
-	<input type='radio' name='12' value='3' /> 3
-	<input type='radio' name='12' value='4' /> 4
-	<input type='radio' name='12' value='5' /> 5
-</p>
-<p>
-	13.- Expone ejemplos en los que se ponen en práctica los
-	contenidos de la asignatura:
-	<input type='radio' name='13' value='ns' /> NS
-	<input type='radio' name='13' value='1' /> 1
-	<input type='radio' name='13' value='2' /> 2
-	<input type='radio' name='13' value='3' /> 3
-	<input type='radio' name='13' value='4' /> 4
-	<input type='radio' name='13' value='5' /> 5
-</p>
-<p>
-	14.- Explica los contenidos con seguridad:
-	<input type='radio' name='14' value='ns' /> NS
-	<input type='radio' name='14' value='1' /> 1
-	<input type='radio' name='14' value='2' /> 2
-	<input type='radio' name='14' value='3' /> 3
-	<input type='radio' name='14' value='4' /> 4
-	<input type='radio' name='14' value='5' /> 5
-</p>
-<p>
-	15.- Resuelve las dudas que se le plantean:
-	<input type='radio' name='15' value='ns' /> NS
-	<input type='radio' name='15' value='1' /> 1
-	<input type='radio' name='15' value='2' /> 2
-	<input type='radio' name='15' value='3' /> 3
-	<input type='radio' name='15' value='4' /> 4
-	<input type='radio' name='15' value='5' /> 5
-</p>
-<p>
-	16.- Fomenta un clima de trabajo y participación:
-	<input type='radio' name='16' value='ns' /> NS
-	<input type='radio' name='16' value='1' /> 1
-	<input type='radio' name='16' value='2' /> 2
-	<input type='radio' name='16' value='3' /> 3
-	<input type='radio' name='16' value='4' /> 4
-	<input type='radio' name='16' value='5' /> 5
-</p>
-<p>
-	17.- Propicia una comunicación fluida y espontánea:
-	<input type='radio' name='17' value='ns' /> NS
-	<input type='radio' name='17' value='1' /> 1
-	<input type='radio' name='17' value='2' /> 2
-	<input type='radio' name='17' value='3' /> 3
-	<input type='radio' name='17' value='4' /> 4
-	<input type='radio' name='17' value='5' /> 5
-</p>
-<p>
-	18.- Motiva a los/as estudiantes para que se interesen por la
-	asignatura:
-	<input type='radio' name='18' value='ns' /> NS
-	<input type='radio' name='18' value='1' /> 1
-	<input type='radio' name='18' value='2' /> 2
-	<input type='radio' name='18' value='3' /> 3
-	<input type='radio' name='18' value='4' /> 4
-	<input type='radio' name='18' value='5' /> 5
-</p>
-<p>
-	19.- Es respetuoso/a en el trato con los/las estudiantes:
-	<input type='radio' name='19' value='ns' /> NS
-	<input type='radio' name='19' value='1' /> 1
-	<input type='radio' name='19' value='2' /> 2
-	<input type='radio' name='19' value='3' /> 3
-	<input type='radio' name='19' value='4' /> 4
-	<input type='radio' name='19' value='5' /> 5
-</p>
-<h4>Sistemas de evaluación</h4>
-<p>
-	20.- Tengo claro lo que se me va a exigir para superar esta
-	asignatura:
-	<input type='radio' name='20' value='ns' /> NS
-	<input type='radio' name='20' value='1' /> 1
-	<input type='radio' name='20' value='2' /> 2
-	<input type='radio' name='20' value='3' /> 3
-	<input type='radio' name='20' value='4' /> 4
-	<input type='radio' name='20' value='5' /> 5
-</p>
-<p>
-	21.- Los criterios y sistemas de evaluación me parecen
-	adecuados, en el contexto de la asignatura:
-	<input type='radio' name='21' value='ns' /> NS
-	<input type='radio' name='21' value='1' /> 1
-	<input type='radio' name='21' value='2' /> 2
-	<input type='radio' name='21' value='3' /> 3
-	<input type='radio' name='21' value='4' /> 4
-	<input type='radio' name='21' value='5' /> 5
-</p>
-<h4>Resultados</h4>
-<p>
-	22.- Las actividades desarrolladas (teóricas, prácticas, de
-	trabajo individual, en grupo, ...) contribuyen a alcanzar los
-	objetivos de la asignatura:
-	<input type='radio' name='22' value='ns' /> NS
-	<input type='radio' name='22' value='1' /> 1
-	<input type='radio' name='22' value='2' /> 2
-	<input type='radio' name='22' value='3' /> 3
-	<input type='radio' name='22' value='4' /> 4
-	<input type='radio' name='22' value='5' /> 5
-</p>
-<p>
-	23.- Estoy satisfecho/a con la labor docente de este/a
-	profesor/a:
-	<input type='radio' name='23' value='ns' /> NS
-	<input type='radio' name='23' value='1' /> 1
-	<input type='radio' name='23' value='2' /> 2
-	<input type='radio' name='23' value='3' /> 3
-	<input type='radio' name='23' value='4' /> 4
-	<input type='radio' name='23' value='5' /> 5
-</p>
-<input type='submit' value='Enviar' />
-</form>"
+	sistemas de evaluación,...): ";
+inputRadio("1", $question, $options);
+
+echo "</p>
+		<h3>DESARROLLO DE LA DOCENCIA</h3>
+		<h4>Cumplimiento de las obligaciones docentes (del encargo docente)</h4>
+	<p>";
+
+$question = "2.- Imparte las clases en el horario fijado: ";
+inputRadio("2", $question, $options);
+
+$question = "3.- Asiste regularmente a clase: ";
+inputRadio("3", $question, $options);
+
+$question = "4.- Cumple adecuadamente su labor de tutoría (presencial o virtual): ";
+inputRadio("4", $question, $options);
+
+echo "<h4>Cumplimiento de la Planificación</h4>";
+
+$question = "5.- Se ajusta a la planificación de la asignatura: ";
+inputRadio("5", $question, $options);
+
+$question = "6.- Se han coordinado las actividades teóricas y prácticas previstas: ";
+inputRadio("6", $question, $options);
+
+$question = "7.- Se ajusta a los sistemas de evaluación especificados en
+la guía docente/programa de la asignatura: ";
+inputRadio("7", $question, $options);
+
+$question = "8.- La bibliografía y otras fuentes de información recomendadas
+en el programa son útiles para el aprendizaje de la asignatura: ";
+inputRadio("8", $question, $options);
+
+echo "<h4>Metodología docente</h4>";
+
+$question = "9.- El/la profesor/a organiza bien las actividades que se
+realizan en clase: ";
+inputRadio("9", $question, $options);
+
+$question = "10.- Utiliza recursos didácticos (pizarra, transparencias,
+mediosaudiovisuales, material de apoyo en red virtual...) que
+facilitan el aprendizaje: ";
+inputRadio("10", $question, $options);
+
+echo "<h4>Competencias docentes desarrolladas por el/la profesor/a</h4>";
+
+$question = "11.- Explica con claridad y resalta los contenidos importantes: ";
+inputRadio("11", $question, $options);
+
+$question = "12.- Se interesa por el grado de comprensión de sus
+explicaciones: ";
+inputRadio("12", $question, $options);
+
+$question = "13.- Expone ejemplos en los que se ponen en práctica los
+contenidos de la asignatura: ";
+inputRadio("13", $question, $options);
+
+$question = "14.- Explica los contenidos con seguridad: ";
+inputRadio("14", $question, $options);
+
+$question = "15.- Resuelve las dudas que se le plantean: ";
+inputRadio("15", $question, $options);
+
+$question = "16.- Fomenta un clima de trabajo y participación: ";
+inputRadio("16", $question, $options);
+
+$question = "17.- Propicia una comunicación fluida y espontánea: ";
+inputRadio("17", $question, $options);
+
+$question = "18.- Motiva a los/as estudiantes para que se interesen por la
+asignatura: ";
+inputRadio("18", $question, $options);
+
+$question = "19.- Es respetuoso/a en el trato con los/las estudiantes: ";
+inputRadio("19", $question, $options);
+
+echo "<h4>Sistemas de evaluación</h4>";
+
+$question = "20.- Tengo claro lo que se me va a exigir para superar esta
+asignatura: ";
+inputRadio("20", $question, $options);
+
+$question = "21.- Los criterios y sistemas de evaluación me parecen
+adecuados, en el contexto de la asignatura: ";
+inputRadio("21", $question, $options);
+
+echo "<h4>Resultados</h4>";
+
+$question = "22.- Las actividades desarrolladas (teóricas, prácticas, de
+trabajo individual, en grupo, ...) contribuyen a alcanzar los
+objetivos de la asignatura: ";
+inputRadio("22", $question, $options);
+
+$question = "23.- Estoy satisfecho/a con la labor docente de este/a
+profesor/a: ";
+inputRadio("23", $question, $options);
+
+echo "<input type='submit' value='Enviar' /></form>";
 ?>
 </body>
 </html>
