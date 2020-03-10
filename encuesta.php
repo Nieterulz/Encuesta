@@ -8,7 +8,6 @@
 </head>
 <body>
 	<?php
-
 function inputRadio($name, $question, $options)
 {
     echo "<p class='cuadro'>";
@@ -19,17 +18,17 @@ function inputRadio($name, $question, $options)
     }
     echo "</p>";
 }
-
-echo "<h2>
+?>
+	<h2>
 		ENCUESTA SOBRE LA OPINIÓN DE LOS/AS ESTUDIANTES SOBRE LA LABOR
 		DOCENTE DEL PROFESORADO
 	</h2>
 	<h3>
 		CÓDIGO ASIGNATURA
-	</h3>";
-echo "<form action='encuesta.php' method='get' class='form-group'>";
-echo "<div class='parent'>";
-echo "<div class='round1'>
+	</h3>
+	<form action='encuesta.php' method='get' class='form-group'>
+		<div class='parent'>
+	<div class='round1'>
 			<p>
 				<i> <b>Titulación:</b> </i>
 				<input
@@ -46,10 +45,10 @@ echo "<div class='round1'>
 				<i> <b>Grupo:</b> </i>
 				<input type='number' name='grupo' min='00' max='99' />
 			</p>
-		</div>";
-echo "<div class='round2'>";
-echo "<h3> INFORMACIÓN PERSONAL Y ACADÉMICA DE LOS ESTUDIANTES </h3>";
-
+		</div>
+	<div class='round2'>
+		<h3> INFORMACIÓN PERSONAL Y ACADÉMICA DE LOS ESTUDIANTES </h3>
+<?php
 $name = "edad";
 $question = "Edad: ";
 $options = array(' &le;19', ' 20-21', ' 22-23', ' 24-25', ' &ge;25');
@@ -98,8 +97,7 @@ $name = "asistencia";
 $question = "Asistencia clase (% de horas lectivas): ";
 $options = array(' Menos 50%', ' Entre 50% y 80%', ' Más de 80%');
 inputRadio($name, $question, $options);
-
-echo "
+?>
 	</div>
 	<div class='round3'>
 		<p>
@@ -129,20 +127,21 @@ echo "
 	/>
 </p>
 <h3>PLANIFICACIÓN DE LA ENSEÑANZA Y APRENDIZAJE</h3>
-<p>";
-
+	<p>
+<?php
 $options = array(" NS", " 1", " 2", " 3", " 4", " 5");
 $question = "1.- El profesor/a informa sobre los distintos aspectos de la
 	guía docente o programa de la asignatura (objetivos,
 	actividades, contenidos del temario, metodología, bibliografía,
 	sistemas de evaluación,...): ";
 inputRadio("1", $question, $options);
+?>
 
-echo "</p>
+	</p>
 		<h3>DESARROLLO DE LA DOCENCIA</h3>
 		<div  class='cuadro'>
-		<h4>Cumplimiento de las obligaciones docentes (del encargo docente)</h4>";
-
+		<h4>Cumplimiento de las obligaciones docentes (del encargo docente)</h4>
+<?php
 $question = "2.- Imparte las clases en el horario fijado: ";
 inputRadio("2", $question, $options);
 
@@ -151,11 +150,13 @@ inputRadio("3", $question, $options);
 
 $question = "4.- Cumple adecuadamente su labor de tutoría (presencial o virtual): ";
 inputRadio("4", $question, $options);
-echo "</div>";
+?>
 
-echo "<div class='cuadro'>";
-echo "<h4>Cumplimiento de la Planificación</h4>";
+</div>
+<div class='cuadro'>
+<h4>Cumplimiento de la Planificación</h4>
 
+<?php
 $question = "5.- Se ajusta a la planificación de la asignatura: ";
 inputRadio("5", $question, $options);
 
@@ -169,11 +170,13 @@ inputRadio("7", $question, $options);
 $question = "8.- La bibliografía y otras fuentes de información recomendadas
 en el programa son útiles para el aprendizaje de la asignatura: ";
 inputRadio("8", $question, $options);
-echo "</div>";
+?>
+</div>
 
-echo "<div class='cuadro'>";
-echo "<h4>Metodología docente</h4>";
+<div class='cuadro'>
+<h4>Metodología docente</h4>
 
+<?php
 $question = "9.- El/la profesor/a organiza bien las actividades que se
 realizan en clase: ";
 inputRadio("9", $question, $options);
@@ -182,11 +185,13 @@ $question = "10.- Utiliza recursos didácticos (pizarra, transparencias,
 mediosaudiovisuales, material de apoyo en red virtual...) que
 facilitan el aprendizaje:";
 inputRadio("10", $question, $options);
-echo "</div>";
+?>
+</div>
 
-echo "<div class='cuadro'>";
-echo "<h4>Competencias docentes desarrolladas por el/la profesor/a</h4>";
+<div class='cuadro'>
+<h4>Competencias docentes desarrolladas por el/la profesor/a</h4>
 
+<?php
 $question = "11.- Explica con claridad y resalta los contenidos importantes: ";
 inputRadio("11", $question, $options);
 
@@ -216,11 +221,13 @@ inputRadio("18", $question, $options);
 
 $question = "19.- Es respetuoso/a en el trato con los/las estudiantes: ";
 inputRadio("19", $question, $options);
-echo "</div>";
+?>
 
-echo "<div class='cuadro'>";
-echo "<h4>Sistemas de evaluación</h4>";
+</div>
+<div class='cuadro'>
+<h4>Sistemas de evaluación</h4>
 
+<?php
 $question = "20.- Tengo claro lo que se me va a exigir para superar esta
 asignatura: ";
 inputRadio("20", $question, $options);
@@ -228,11 +235,14 @@ inputRadio("20", $question, $options);
 $question = "21.- Los criterios y sistemas de evaluación me parecen
 adecuados, en el contexto de la asignatura: ";
 inputRadio("21", $question, $options);
-echo "</div>";
+?>
 
-echo "<div class='cuadro'>";
-echo "<h4>Resultados</h4>";
+</div>
 
+<div class='cuadro'>
+<h4>Resultados</h4>
+
+<?php
 $question = "22.-Las actividades desarrolladas(teóricas, prácticas, de
 trabajo individual, en grupo,...) contribuyen a alcanzar los
 objetivos de la asignatura:";
@@ -241,9 +251,11 @@ inputRadio("22", $question, $options);
 $question = "23.- Estoy satisfecho/a con la labor docente de este/a
 profesor/a: ";
 inputRadio("23", $question, $options);
-echo "</div>";
-
-echo "<input type='submit' value='Enviar' class='submit'/></form>";
 ?>
+
+</div>
+
+<input type='submit' value='Enviar' class='submit'/></form>
+
 </body>
 </html>
