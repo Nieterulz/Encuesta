@@ -1,102 +1,132 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Trabajando con MySQL</title>
-</head>
-
-<body>
-
 <?php
-$user = "root";
+function checkErrors($mysqli, $query, $tableName)
+{
+    if ($mysqli->query($query) === true) {
+        echo "Table" . $tableName . "created successfully <br><br>";
+    } else {
+        echo "Error creating table: " . $mysqli->error . "<br><br>";
+    }
+}
+
+$servername = "localhost";
+$username = "root";
 $password = "";
-$database = "encuesta";
+$dbname = "encuestas";
 
-$mysqli = new mysqli('127.0.0.1', 'root', '', 'encuesta');
+// Crea conexión
+$mysqli = new mysqli($servername, $username, $password, $dbname);
 
-$query = "CREATE TABLE Titulacion(
-    id int NOT NULL AUTO_INCREMENT PRIMARY KEY
-	nombre text NOT NULL,
-    )";
+// Comprobar conexión
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
+// Creamos tabla titulación
+$query =
+    "CREATE TABLE titulaciones(
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		nombre VARCHAR(200) NOT NULL
+	)";
+$nombreTabla = "titulaciones";
+checkErrors($mysqli, $query, $nombreTabla);
 $mysqli->query($query);
 
-$query = "CREATE TABLE Asignatura(
-    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	nombre text NOT NULL,
-	FOREIGN KEY (id_titulacion) REFERENCES Titulacion(id)
-    )";
+// Creamos tabla asignaturas
+$query =
+    "CREATE TABLE asignaturas(
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		nombre VARCHAR(200) NOT NULL,
+		id_titulaciones INT NOT NULL,
+		FOREIGN KEY (id_titulaciones) REFERENCES titulaciones(id)
+	)";
+$nombreTabla = "asignaturas";
+checkErrors($mysqli, $query, $nombreTabla);
 $mysqli->query($query);
 
-$query = "CREATE TABLE Grupo(
-    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	FOREIGN KEY (id_asignatura) REFERENCES Asignatura(id)
+// Creamos la tabla grupos
+$query =
+    "CREATE TABLE grupos(
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		id_asignatura INT NOT NULL,
+		FOREIGN KEY (id_asignatura) REFERENCES asignaturas(id)
     )";
+$nombreTabla = "grupos";
+checkErrors($mysqli, $query, $nombreTabla);
 $mysqli->query($query);
 
-$query = "CREATE TABLE Alumno(
-    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	edad int NOT NULL,
-	sexo TINYTEXT NOT NULL,
-	curso_alto int NOT NULL,
-	curso_bajo int NOT NULL,
-	FOREIGN KEY (id_grupo) REFERENCES Grupo(id)
-    )";
+// Creamos tabla encuestas
+$query =
+    "CREATE TABLE encuestas(
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		id_asignatura INT NOT NULL,
+		id_grupo INT NOT NULL,
+		id_estudiante INT NOT NULL,
+		FOREIGN KEY (id_asignatura) REFERENCES asignaturas(id),
+		FOREIGN KEY (id_grupo) REFERENCES asignaturas(id),
+		FOREIGN KEY (id_estudiante) REFERENCES asignaturas(id)
+	)";
+$nombreTabla = "encuestas";
+checkErrors($mysqli, $query, $nombreTabla);
 $mysqli->query($query);
 
-$query = "CREATE TABLE Profesor(
-    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	nombre text NOT NULL,
-	FOREIGN KEY (id_asignatura) REFERENCES Asignatura(id)
-    )";
+// Creamos la tabla estudiantes
+$query =
+    "CREATE TABLE estudiantes(
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		edad INT NOT NULL,
+		sexo VARCHAR(200) NOT NULL,
+		curso_alto INT NOT NULL,
+		curso_bajo INT NOT NULL,
+		nMatriculas INT NOT NULL,
+		nExamenes INT NOT NULL,
+		interes INT NOT NULL,
+		tutorias VARCHAR(200) NOT NULL,
+		dificultad VARCHAR(200) NOT NULL,
+		calificacion VARCHAR(200) NOT NULL,
+		asistencia VARCHAR(200) NOT NULL
+	)";
+$nombreTabla = "estudiantes";
+checkErrors($mysqli, $query, $nombreTabla);
 $mysqli->query($query);
 
-$query = "CREATE TABLE Alumno_Grupo(
-    -- id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	matriculaciones int NOT NULL,
-	interes int NOT NULL,
-	tutorias text NOT NULL,
-	dificultad text NOT NULL,
-	calificacion text NOT NULL,
-	asistencia text NOT NULL,
-	FOREIGN KEY (id_grupo) REFERENCES Grupo(id),
-	FOREIGN KEY (id_alumno) REFERENCES ALumno(id),
+// Creamos la tabla profesores
+$query =
+    "CREATE TABLE profesores(
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		nombre VARCHAR(200) NOT NULL
     )";
+$nombreTabla = "profesores";
+checkErrors($mysqli, $query, $nombreTabla);
 $mysqli->query($query);
 
-$query = "CREATE TABLE Asignatura_Profesor(
-    -- id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	dato_1 int NOT NULL,
-	dato_2 int NOT NULL,
-	dato_3 int NOT NULL,
-	dato_4 int NOT NULL,
-	dato_5 int NOT NULL,
-	dato_6 int NOT NULL,
-	dato_7 int NOT NULL,
-	dato_8 int NOT NULL,
-	dato_9 int NOT NULL,
-	dato_10 int NOT NULL,
-	dato_11 int NOT NULL,
-	dato_12 int NOT NULL,
-	dato_13 int NOT NULL,
-	dato_14 int NOT NULL,
-	dato_15 int NOT NULL,
-	dato_16 int NOT NULL,
-	dato_17 int NOT NULL,
-	dato_18 int NOT NULL,
-	dato_19 int NOT NULL,
-	dato_20 int NOT NULL,
-	dato_21 int NOT NULL,
-	dato_22 int NOT NULL,
-	dato_23 int NOT NULL,
-	FOREIGN KEY (id_asignatura) REFERENCES Asignatura(id),
-	FOREIGN KEY (id_profesor) REFERENCES Profesor(id),
+// Creamos la tabla preguntas
+$query =
+    "CREATE TABLE preguntas(
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		pregunta VARCHAR(200) NOT NULL,
+		campo VARCHAR(200) NOT NULL,
+		subcampo VARCHAR(200) NOT NULL
     )";
+$nombreTabla = "preguntas";
+checkErrors($mysqli, $query, $nombreTabla);
 $mysqli->query($query);
 
+// Creamos la tabla respuestas
+$query =
+    "CREATE TABLE respuestas(
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		valor INT NOT NULL,
+		nVotos INT NOT NULL,
+		id_estudiante INT NOT NULL,
+		id_profesor INT NOT NULL,
+		id_pregunta INT NOT NULL,
+		FOREIGN KEY (id_estudiante) REFERENCES estudiantes(id),
+		FOREIGN KEY (id_profesor) REFERENCES profesores(id),
+		FOREIGN KEY (id_pregunta) REFERENCES preguntas(id)
+    )";
+$nombreTabla = "respuestas";
+checkErrors($mysqli, $query, $nombreTabla);
+$mysqli->query($query);
+
+// Cerramos conexión
 $mysqli->close();
-
-?>
-
-
-</body>
-</html>

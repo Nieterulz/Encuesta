@@ -69,13 +69,19 @@ $question = "Curso más bajo en el que estás matriculado: ";
 $options = array(' 1º', ' 2º', ' 3º', ' 4º', ' 5º', '6º');
 inputRadio($name, $question, $options);
 
-$name = "matriculaciones";
+$name = "matriculas";
 $question = "Veces que te has matriculado en esta asignatura: ";
+$options = array(' 1', ' 2', ' 3', ' &gt;3');
+inputRadio($name, $question, $options);
+
+$name = "examenes";
+$question = "Veces que te has examinado en esta asignatura: ";
 $options = array(' 1', ' 2', ' 3', ' &gt;3');
 inputRadio($name, $question, $options);
 
 $name = "interes";
 $question = "La asignatura me interesa: ";
+$options = array(' 1', ' 2', ' 3', ' &gt;3');
 inputRadio($name, $question, $options);
 
 $name = "tutorias";
