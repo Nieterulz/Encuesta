@@ -14,7 +14,7 @@ function inputRadio($name, $question, $options)
     echo "<i>" . $question . "</i>";
     for ($i = 0; $i < count($options); $i++) {
         $op = $options[$i];
-        echo "<input type='radio' name='" . $name . "' value='" . strtolower($op) . "' />" . $op;
+        echo "<input type='radio' name='" . $name . "' value='" . strtolower($op) . "'/>" . $op;
     }
     echo "	</p>";
 }
@@ -26,8 +26,8 @@ function inputRadio($name, $question, $options)
 	<h3>
 		CÓDIGO ASIGNATURA
 	</h3>
-	<form action='encuesta.php' method='get' class='form-group'>
-		<div class='parent'>
+	<form action='enviarDatos.php' method='post' class='form-group'>
+	<div class='parent'>
 	<div class='round1'>
 			<p>
 				<i> <b>Titulación:</b> </i>
@@ -59,12 +59,12 @@ $question = "Sexo: ";
 $options = array(' Hombre', ' Mujer');
 inputRadio($name, $question, $options);
 
-$name = "curso_alto";
+$name = "cursoalto";
 $question = "Curso más alto en el que estás matriculado: ";
 $options = array(' 1º', ' 2º', ' 3º', ' 4º', ' 5º', '6º');
 inputRadio($name, $question, $options);
 
-$name = "curso_bajo";
+$name = "cursobajo";
 $question = "Curso más bajo en el que estás matriculado: ";
 $options = array(' 1º', ' 2º', ' 3º', ' 4º', ' 5º', '6º');
 inputRadio($name, $question, $options);
@@ -262,6 +262,6 @@ inputRadio("dato_23", $question, $options);
 </div>
 
 <input type='submit' value='Enviar' class='submit'/></form>
-
+	</form>
 </body>
 </html>
