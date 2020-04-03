@@ -11,14 +11,14 @@ h2 {
 }
 
 .cuadro {
-    border: 2px solid blue;
+    border: 2px solid orangered;
     border-radius: 8px;
     padding: 1% 2%;
     margin: 0% 0% 0% 0%;
 }
 
 div.round1 {
-    border: 2px solid blue;
+    border: 2px solid orangered;
     border-radius: 8px;
     padding: 1% 2%;
     margin: 0% 0% 0% 0%;
@@ -26,7 +26,7 @@ div.round1 {
 }
 
 div.round2 {
-    border: 2px solid blue;
+    border: 2px solid orangered;
     border-radius: 8px;
     padding: 1% 2%;
     margin: 0% 0% 0% 0%;
@@ -34,7 +34,7 @@ div.round2 {
 }
 
 div.round3 {
-    border: 2px solid blue;
+    border: 2px solid orangered;
     border-radius: 8px;
     padding: 1% 2%;
     margin: 0% 0% 0% 0%;
@@ -42,7 +42,7 @@ div.round3 {
 }
 
 div > p {
-    color: blue;
+    color: orangered;
     margin-top: 6px;
     margin-bottom: 6px;
 }
@@ -61,7 +61,7 @@ i {
 }
 
 .submit {
-    background-color: blue;
+    background-color: orangered;
     border-radius: 15px;
     color: white;
     padding: 15px 32px;
@@ -74,14 +74,14 @@ i {
 }
 
 .prof {
-    border: 2px solid blue;
+    border: 2px solid orangered;
     border-radius: 8px;
     padding: 1% 2%;
     margin: 0% 0% 0% 0%;
     width: 25%;
     height: 2%;
 }
-/* 
+
 .error {
     color: #ff0000;
-} */
+}

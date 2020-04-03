@@ -14,7 +14,7 @@ function inputRadio($name, $question, $options)
     echo "<i>" . $question . "</i>";
     for ($i = 0; $i < count($options); $i++) {
         $op = $options[$i];
-        echo "<input type='radio' name='" . $name . "' value='" . strtolower($op) . "'/>" . $op;
+        echo "<input type='radio' name='" . $name . "' value='" . strtolower($op) . "' checked/>" . $op;
     }
     echo "	</p>";
 }
@@ -32,18 +32,18 @@ function inputRadio($name, $question, $options)
 			<p>
 				<i> <b>Titulación:</b> </i>
 				<input
-					type='number' name='titulacion' maxlength='4' min='0000' max='9999'
+					type='number' name='titulacion' maxlength='4' min='0000' max='9999' value='0000'
 				/>
 			</p>
 			<p>
 				<i><b>Asignatura:</b> </i>
 				<input
-					type='number' name='asignatura' min='000' max='999'
+					type='number' name='asignatura' min='000' max='999' value='0000'
 				/>
 			</p>
 			<p>
 				<i> <b>Grupo:</b> </i>
-				<input type='number' name='grupo' min='00' max='99' />
+				<input type='number' name='grupo' min='00' max='99' value='00' />
 			</p>
 		</div>
 	<div class='round2'>
@@ -60,13 +60,13 @@ $options = array(' Hombre', ' Mujer');
 inputRadio($name, $question, $options);
 
 $name = "cursoalto";
-$question = "Curso más alto en el que estás matriculado: ";
-$options = array(' 1º', ' 2º', ' 3º', ' 4º', ' 5º', '6º');
+$question = "Curso m&#225;s alto en el que estás matriculado: ";
+$options = array(' 1&#186;', ' 2&#186;', ' 3&#186;', ' 4&#186;', ' 5&#186;', '6&#186;');
 inputRadio($name, $question, $options);
 
 $name = "cursobajo";
 $question = "Curso más bajo en el que estás matriculado: ";
-$options = array(' 1º', ' 2º', ' 3º', ' 4º', ' 5º', '6º');
+$options = array(' 1&#186;', ' 2&#186;', ' 3&#186;', ' 4&#186;', ' 5&#186;', '6&#186;');
 inputRadio($name, $question, $options);
 
 $name = "matriculas";
@@ -101,7 +101,7 @@ inputRadio($name, $question, $options);
 
 $name = "asistencia";
 $question = "Asistencia clase (% de horas lectivas): ";
-$options = array(' Menos 50%', ' Entre 50% y 80%', ' Más de 80%');
+$options = array(' Menos 50%', ' Entre 50% y 80%', ' M&#225;s de 80%');
 inputRadio($name, $question, $options);
 ?>
 	</div>
@@ -130,6 +130,7 @@ inputRadio($name, $question, $options);
 		maxlength='4'
 		min='0000'
 		max='9999'
+		value='0000'
 	/>
 </p>
 <h3>PLANIFICACIÓN DE LA ENSEÑANZA Y APRENDIZAJE</h3>
@@ -140,7 +141,7 @@ $question = "1.- El profesor/a informa sobre los distintos aspectos de la
 	guía docente o programa de la asignatura (objetivos,
 	actividades, contenidos del temario, metodología, bibliografía,
 	sistemas de evaluación,...): ";
-inputRadio("dato_1", $question, $options);
+inputRadio("dato1", $question, $options);
 ?>
 
 	</p>
@@ -149,13 +150,13 @@ inputRadio("dato_1", $question, $options);
 		<h4>Cumplimiento de las obligaciones docentes (del encargo docente)</h4>
 <?php
 $question = "2.- Imparte las clases en el horario fijado: ";
-inputRadio("dato_2", $question, $options);
+inputRadio("dato2", $question, $options);
 
 $question = "3.- Asiste regularmente a clase: ";
-inputRadio("dato_3", $question, $options);
+inputRadio("dato3", $question, $options);
 
 $question = "4.- Cumple adecuadamente su labor de tutoría (presencial o virtual): ";
-inputRadio("dato_4", $question, $options);
+inputRadio("dato4", $question, $options);
 ?>
 
 </div>
@@ -164,18 +165,18 @@ inputRadio("dato_4", $question, $options);
 
 <?php
 $question = "5.- Se ajusta a la planificación de la asignatura: ";
-inputRadio("dato_5", $question, $options);
+inputRadio("dato5", $question, $options);
 
 $question = "6.- Se han coordinado las actividades teóricas y prácticas previstas: ";
-inputRadio("dato_6", $question, $options);
+inputRadio("dato6", $question, $options);
 
 $question = "7.- Se ajusta a los sistemas de evaluación especificados en
 la guía docente/programa de la asignatura: ";
-inputRadio("dato_7", $question, $options);
+inputRadio("dato7", $question, $options);
 
 $question = "8.- La bibliografía y otras fuentes de información recomendadas
 en el programa son útiles para el aprendizaje de la asignatura: ";
-inputRadio("dato_8", $question, $options);
+inputRadio("dato8", $question, $options);
 ?>
 </div>
 
@@ -185,12 +186,12 @@ inputRadio("dato_8", $question, $options);
 <?php
 $question = "9.- El/la profesor/a organiza bien las actividades que se
 realizan en clase: ";
-inputRadio("dato_9", $question, $options);
+inputRadio("dato9", $question, $options);
 
 $question = "10.- Utiliza recursos didácticos (pizarra, transparencias,
 mediosaudiovisuales, material de apoyo en red virtual...) que
 facilitan el aprendizaje:";
-inputRadio("dato_10", $question, $options);
+inputRadio("dato10", $question, $options);
 ?>
 </div>
 
@@ -199,34 +200,34 @@ inputRadio("dato_10", $question, $options);
 
 <?php
 $question = "11.- Explica con claridad y resalta los contenidos importantes: ";
-inputRadio("dato_11", $question, $options);
+inputRadio("dato11", $question, $options);
 
 $question = "12.- Se interesa por el grado de comprensión de sus
 explicaciones: ";
-inputRadio("dato_12", $question, $options);
+inputRadio("dato12", $question, $options);
 
 $question = "13.- Expone ejemplos en los que se ponen en práctica los
 contenidos de la asignatura: ";
-inputRadio("dato_13", $question, $options);
+inputRadio("dato13", $question, $options);
 
 $question = "14.- Explica los contenidos con seguridad: ";
-inputRadio("dato_14", $question, $options);
+inputRadio("dato14", $question, $options);
 
 $question = "15.- Resuelve las dudas que se le plantean: ";
-inputRadio("dato_15", $question, $options);
+inputRadio("dato15", $question, $options);
 
 $question = "16.- Fomenta un clima de trabajo y participación: ";
-inputRadio("dato_16", $question, $options);
+inputRadio("dato16", $question, $options);
 
 $question = "17.- Propicia una comunicación fluida y espontánea: ";
-inputRadio("dato_17", $question, $options);
+inputRadio("dato17", $question, $options);
 
 $question = "18.- Motiva a los/as estudiantes para que se interesen por la
 asignatura: ";
-inputRadio("dato_18", $question, $options);
+inputRadio("dato18", $question, $options);
 
 $question = "19.- Es respetuoso/a en el trato con los/las estudiantes: ";
-inputRadio("dato_19", $question, $options);
+inputRadio("dato19", $question, $options);
 ?>
 
 </div>
@@ -236,11 +237,11 @@ inputRadio("dato_19", $question, $options);
 <?php
 $question = "20.- Tengo claro lo que se me va a exigir para superar esta
 asignatura: ";
-inputRadio("dato_20", $question, $options);
+inputRadio("dato20", $question, $options);
 
 $question = "21.- Los criterios y sistemas de evaluación me parecen
 adecuados, en el contexto de la asignatura: ";
-inputRadio("dato_21", $question, $options);
+inputRadio("dato21", $question, $options);
 ?>
 
 </div>
@@ -252,11 +253,11 @@ inputRadio("dato_21", $question, $options);
 $question = "22.-Las actividades desarrolladas(teóricas, prácticas, de
 trabajo individual, en grupo,...) contribuyen a alcanzar los
 objetivos de la asignatura:";
-inputRadio("dato_22", $question, $options);
+inputRadio("dato22", $question, $options);
 
 $question = "23.- Estoy satisfecho/a con la labor docente de este/a
 profesor/a: ";
-inputRadio("dato_23", $question, $options);
+inputRadio("dato23", $question, $options);
 ?>
 
 </div>

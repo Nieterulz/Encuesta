@@ -11,98 +11,54 @@
 </html>
 
 <?php
-// define variables and set to empty values
+header("Content-Type: text/html;charset=utf-8");
+// Definimos los campos que existen en el formulario
+$codigos = array("titulacion", "asignatura", "grupo");
 
-$edadErr = $sexoErr = $cursoaltoErr = $cursobajoErr = $matriculasErr = $examenesErr
-= $interesErr = $tutoriasErr = $dificultadErr = $calificacionErr = $asistenciaErr = "";
+$estudiantes = array("edad", "sexo", "cursoalto", "cursobajo",
+    "matriculas", "examenes", "interes", "tutorias", "dificultad",
+    "calificacion", "asistencia");
 
-$edad = $sexo = $cursoalto = $cursobajo = $matriculas = $examenes
-= $interes = $tutorias = $dificultad = $calificacion = $asistencia = "";
+$datos = array("dato1", "dato2", "dato3", "dato4", "dato5", "dato6",
+    "dato7", "dato8", "dato9", "dato10", "dato11", "dato12",
+    "dato13", "dato14", "dato15", "dato16", "dato17", "dato18",
+    "dato19", "dato20", "dato21", "dato22", "dato23");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["edad"])) {
-        $edadErr = "edad is required";
-    } else {
-        $edad = test_input($_POST["edad"]);
+
+    foreach ($codigos as $c => $valor) {
+        $codigos[$c] = getCampo($valor);
     }
 
-    if (empty($_POST["sexo"])) {
-        $sexoErr = "sexo is required";
-    } else {
-        $sexo = test_input($_POST["sexo"]);
+    foreach ($estudiantes as $e => $valor) {
+        $estudiantes[$e] = getCampo($valor);
     }
 
-    if (empty($_POST["cursoalto"])) {
-        $cursoalto = "cursoalto is required";
-    } else {
-        $cursoalto = test_input($_POST["cursoalto"]);
+    foreach ($datos as $e => $valor) {
+        $datos[$e] = getCampo($valor);
     }
 
-    if (empty($_POST["cursobajo"])) {
-        $cursobajo = "cursobajo is required";
-    } else {
-        $cursobajo = test_input($_POST["cursobajo"]);
-    }
-
-    if (empty($_POST["matriculas"])) {
-        $matriculasErr = "matriculas is required";
-    } else {
-        $matriculas = test_input($_POST["matriculas"]);
-    }
-
-    if (empty($_POST["examenes"])) {
-        $examenesErr = "examenes is required";
-    } else {
-        $examenes = test_input($_POST["examenes"]);
-    }
-
-    if (empty($_POST["interes"])) {
-        $interesErr = "interes is required";
-    } else {
-        $interes = test_input($_POST["interes"]);
-    }
-
-    if (empty($_POST["tutorias"])) {
-        $tutoriasErr = "tutorias is required";
-    } else {
-        $tutorias = test_input($_POST["tutorias"]);
-    }
-
-    if (empty($_POST["dificultad"])) {
-        $dificultadErr = "dificultad is required";
-    } else {
-        $dificultad = test_input($_POST["dificultad"]);
-    }
-
-    if (empty($_POST["calificacion"])) {
-        $calificacionErr = "calificacion is required";
-    } else {
-        $calificacion = test_input($_POST["calificacion"]);
-    }
-
-    if (empty($_POST["asistencia"])) {
-        $asistenciaErr = "asistencia is required";
-    } else {
-        $asistencia = test_input($_POST["asistencia"]);
-    }
+    print_r($codigos);
+    echo "<br>";
+    print_r($estudiantes);
+    echo "<br>";
+    print_r($datos);
+    echo "<br>";
 }
 
+// Comprueba si es valido el campo introducido
 function test_input($data)
 {
-    $data = trim($data); // Borra espacios de más
-    $data = stripslashes($data); //
+    $data = trim($data);
     $data = htmlspecialchars($data);
     return $data;
 }
 
-echo $edad . "<br>";
-echo $sexo . "<br>";
-echo $cursoalto . "<br>";
-echo $cursobajo . "<br>";
-echo $matriculas . "<br>";
-echo $examenes . "<br>";
-echo $interes . "<br>";
-echo $tutorias . "<br>";
-echo $dificultad . "<br>";
-echo $calificacion . "<br>";
-echo $asistencia . "<br>";
+// Obtiene el campo introducido, de lo contrario devuelve vacio
+function getCampo($campo)
+{
+    if (!empty($_POST[$campo])) {
+        return test_input($_POST[$campo]);
+    }
+    return "";
+}
