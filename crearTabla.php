@@ -36,8 +36,8 @@ $query =
     "CREATE TABLE asignaturas(
 		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		nombre VARCHAR(200) NOT NULL,
-		id_titulaciones INT NOT NULL,
-		FOREIGN KEY (id_titulaciones) REFERENCES titulaciones(id)
+		id_titulacion INT NOT NULL,
+		FOREIGN KEY (id_titulacion) REFERENCES titulaciones(id)
 	)";
 $nombreTabla = "asignaturas";
 checkErrors($mysqli, $query, $nombreTabla);

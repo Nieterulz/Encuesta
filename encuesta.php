@@ -38,12 +38,12 @@ function inputRadio($name, $question, $options)
 			<p>
 				<i><b>Asignatura:</b> </i>
 				<input
-					type='number' name='asignatura' min='000' max='999' value='0000'
+					type='number' name='asignatura' min='000' max='999' value='0001'
 				/>
 			</p>
 			<p>
 				<i> <b>Grupo:</b> </i>
-				<input type='number' name='grupo' min='00' max='99' value='00' />
+				<input type='number' name='grupo' min='00' max='99' value='06' />
 			</p>
 		</div>
 	<div class='round2'>
@@ -126,7 +126,7 @@ inputRadio($name, $question, $options);
 	<b>Código Profesor</b>:
 	<input
 		type='number'
-		name='codigo-prof'
+		name='profesor'
 		maxlength='4'
 		min='0000'
 		max='9999'
