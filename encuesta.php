@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-	<meta charset='UTF-8'>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<title>Encuesta</title>
 	<link rel='stylesheet' href='encuesta.css' />
@@ -18,6 +18,15 @@ function inputRadio($name, $question, $options)
     }
     echo "	</p>";
 }
+
+function checkNS($s)
+{
+    if (strcmp($s, "NS") != 0) {
+        return $s;
+    }
+    return '0';
+}
+
 ?>
 	<h2>
 		ENCUESTA SOBRE LA OPINIÓN DE LOS/AS ESTUDIANTES SOBRE LA LABOR
@@ -60,23 +69,23 @@ $options = array(' Hombre', ' Mujer');
 inputRadio($name, $question, $options);
 
 $name = "cursoalto";
-$question = "Curso m&#225;s alto en el que estás matriculado: ";
-$options = array(' 1&#186;', ' 2&#186;', ' 3&#186;', ' 4&#186;', ' 5&#186;', '6&#186;');
+$question = "Curso más alto en el que estás matriculado: ";
+$options = array(' 1', ' 2', ' 3', ' 4', ' 5', '6');
 inputRadio($name, $question, $options);
 
 $name = "cursobajo";
 $question = "Curso más bajo en el que estás matriculado: ";
-$options = array(' 1&#186;', ' 2&#186;', ' 3&#186;', ' 4&#186;', ' 5&#186;', '6&#186;');
+$options = array(' 1', ' 2', ' 3', ' 4', ' 5', '6');
 inputRadio($name, $question, $options);
 
 $name = "matriculas";
 $question = "Veces que te has matriculado en esta asignatura: ";
-$options = array(' 1', ' 2', ' 3', ' &gt;3');
+$options = array(' 1', ' 2', ' 3', ' >3');
 inputRadio($name, $question, $options);
 
 $name = "examenes";
 $question = "Veces que te has examinado en esta asignatura: ";
-$options = array(' 1', ' 2', ' 3', ' &gt;3');
+$options = array(' 1', ' 2', ' 3', ' >3');
 inputRadio($name, $question, $options);
 
 $name = "interes";
@@ -101,7 +110,7 @@ inputRadio($name, $question, $options);
 
 $name = "asistencia";
 $question = "Asistencia clase (% de horas lectivas): ";
-$options = array(' Menos 50%', ' Entre 50% y 80%', ' M&#225;s de 80%');
+$options = array(' Menos 50%', ' Entre 50% y 80%', ' Mas de 80%');
 inputRadio($name, $question, $options);
 ?>
 	</div>
@@ -246,9 +255,10 @@ inputRadio("dato21", $question, $options);
 
 </div>
 
-<div class='cuadro'>
-<h4>Resultados</h4>
 
+<p><h3>RESULTADOS</h3></p>
+
+<div class='cuadro'>
 <?php
 $question = "22.-Las actividades desarrolladas(teóricas, prácticas, de
 trabajo individual, en grupo,...) contribuyen a alcanzar los

@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $base = new PDO('mysql:host=127.0.0.1;dbname=encuestas', 'root', '');
         $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $base->query("SET NAMES 'utf8'");
 
         if (!existeTitulacion($base, $codigos['titulacion'])) {
             die("Error al introducir `titulacion`");
@@ -51,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         introducirEstudiante($base, $estudiantes);
-        // introducirEncuesta($base, $codigos['asignatura'], $codigos['grupo'], );
+        introducirEncuesta($base, $codigos);
+        introducirRespuesta($base, $codigos, $datos);
 
     } catch (Exception $e) {
         die('Error: ' . $e->GetMessage());
@@ -156,6 +158,39 @@ function introducirEstudiante($base, $estudiantes)
         $estudiantes['calificacion'] . "', '" .
         $estudiantes['asistencia'] .
         "');";
-    echo $query;
     $base->query($query);
+}
+
+function introducirEncuesta($base, $codigos)
+{
+    $query = "SELECT MAX(id) FROM `estudiantes`";
+    $estudiante = $base->query($query);
+    $estudiante = $estudiante->fetch();
+    $idEstudiante = $estudiante['0'];
+
+    $query = "INSERT INTO `encuestas` VALUES
+                (NULL, '" .
+        $codigos['asignatura'] . "', '" .
+        $codigos['grupo'] . "', '" .
+        $idEstudiante .
+        "');";
+    $base->query($query);
+}
+
+function introducirRespuesta($base, $codigos, $datos)
+{
+    $query = "SELECT MAX(id) FROM `estudiantes`";
+    $estudiante = $base->query($query);
+    $estudiante = $estudiante->fetch();
+    $idEstudiante = $estudiante['0'];
+
+    for ($i = 1; $i <= 23; $i++) {
+        $query = "INSERT INTO `respuestas` VALUES
+            (NULL, '" .
+            $datos['dato' . $i] . "', '" .
+            $idEstudiante . "', '" .
+            $codigos['profesor'] . "', '" .
+            $i . "');";
+        $base->query($query);
+    }
 }
