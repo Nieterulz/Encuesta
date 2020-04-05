@@ -93,7 +93,9 @@ $mysqli->query($query);
 $query =
     "CREATE TABLE profesores(
 		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-		nombre VARCHAR(200) NOT NULL
+		nombre VARCHAR(200) NOT NULL,
+		id_asignatura INT NOT NULL,
+		FOREIGN KEY (id_asignatura) REFERENCES asignaturas(id)
     )";
 $nombreTabla = "profesores";
 checkErrors($mysqli, $query, $nombreTabla);
