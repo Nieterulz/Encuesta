@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encuesta</title>
-</head>
-<body>
-    <h1>Sus datos han sido enviados correctamente</h1>
-</body>
-</html>
-
 <?php
 header("Content-Type: text/html;charset=utf-8");
 // Definimos los campos que existen en el formulario
@@ -26,41 +14,52 @@ $datosN = array("dato1", "dato2", "dato3", "dato4", "dato5", "dato6",
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    // Almacenamos los códigos de la encuesta
     foreach ($codigosN as $c => $valor) {
         $codigos[$valor] = getCampo($valor);
     }
 
+    // Almacenamos los datos de los estudiantes
     foreach ($estudiantesN as $e => $valor) {
         $estudiantes[$valor] = getCampo($valor);
     }
 
+    // Almacenamos los datos de la encuesta para el profesor
     foreach ($datosN as $e => $valor) {
         $datos[$valor] = getCampo($valor);
     }
 
-    print_r($codigos);
-    echo "<br>";
-    print_r($estudiantes);
-    echo "<br>";
-    print_r($datos);
-    echo "<br>";
+    // Vemos los datos que recibimos
+    // verDatos($codigos, $estudiantes, $datos);
 
+    // Nos conectamos a la base de datos
     try {
         $base = new PDO('mysql:host=127.0.0.1;dbname=encuestas', 'root', '');
         $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $keys = array('titulacion', 'asignatura', 'grupo');
-        $tabla = array('titulaciones', 'asignaturas', 'grupos');
-        for ($i = 0; $i < count($keys); $i++) {
-            if (!exists($base, $codigos[$keys[$i]], $tabla[$i], $codigos['titulacion'])) {
-                die("Error al introducir " . $keys[$i]);
-            }
+        if (!existeTitulacion($base, $codigos['titulacion'])) {
+            die("Error al introducir `titulacion`");
         }
+        if (!existeAsignatura($base, $codigos['asignatura'], $codigos['titulacion'])) {
+            die("Error al introducir `asignatura`");
+        }
+        if (!existeGrupo($base, $codigos['grupo'], $codigos['titulacion'])) {
+            die("Error al introducir `grupo`");
+        }
+        if (!existeProfesor($base, $codigos['profesor'], $codigos['asignatura'])) {
+            die("Error al introducir `profesor`");
+        }
+
+        introducirEstudiante($base, $estudiantes);
+        // introducirEncuesta($base, $codigos['asignatura'], $codigos['grupo'], );
+
     } catch (Exception $e) {
         die('Error: ' . $e->GetMessage());
     } finally {
         $base = null; // Cierra la conexión
     }
+
+    echo "<h1>Sus datos han sido enviados correctamente</h1>";
 }
 
 // Comprueba si es valido el campo introducido
@@ -80,21 +79,83 @@ function getCampo($campo)
     return "";
 }
 
-function exists($base, $id, $tabla, $id_titulacion)
+// Si existe el profesor devuelve true
+function existeProfesor($base, $id, $id_asignatura)
 {
-    $query = "SELECT `id` FROM `" . $tabla . "` WHERE `id`=" . $id;
-
-    if (strcmp($tabla, "titulaciones") != 0) {
-        $query = $query . " AND `id_titulacion`=" . $id_titulacion . ";";
-    }
-
-    echo $query;
-
+    $query = "SELECT `id` FROM `profesores`
+        WHERE `id`=" . $id . " AND `id_asignatura`=" . $id_asignatura . ";";
     $resultado = $base->query($query);
-
     if (empty($resultado->fetchAll())) {
         return false;
     }
     $resultado->closeCursor();
     return true;
+}
+
+// Si existe el grupo devuelve true
+function existeGrupo($base, $id, $id_titulacion)
+{
+    $query = "SELECT `id` FROM `grupos`
+        WHERE `id`=" . $id . " AND `id_titulacion`=" . $id_titulacion . ";";
+    $resultado = $base->query($query);
+    if (empty($resultado->fetchAll())) {
+        return false;
+    }
+    $resultado->closeCursor();
+    return true;
+}
+
+// Si existe la asignatura devuelve true
+function existeAsignatura($base, $id, $id_titulacion)
+{
+    $query = "SELECT `id` FROM `asignaturas`
+        WHERE `id`=" . $id . " AND `id_titulacion`=" . $id_titulacion . ";";
+    $resultado = $base->query($query);
+    if (empty($resultado->fetchAll())) {
+        return false;
+    }
+    $resultado->closeCursor();
+    return true;
+}
+
+// Si existe la titulacion devuelve true
+function existeTitulacion($base, $id)
+{
+    $query = "SELECT `id` FROM `titulaciones` WHERE `id`=" . $id;
+    $resultado = $base->query($query);
+    if (empty($resultado->fetchAll())) {
+        return false;
+    }
+    $resultado->closeCursor();
+    return true;
+}
+
+function verDatos($codigos, $estudiantes, $datos)
+{
+    print_r($codigos);
+    echo "<br>";
+    print_r($estudiantes);
+    echo "<br>";
+    print_r($datos);
+    echo "<br>";
+}
+
+function introducirEstudiante($base, $estudiantes)
+{
+    $query = "INSERT INTO `estudiantes` VALUES
+                (NULL, '" .
+        $estudiantes['edad'] . "', '" .
+        $estudiantes['sexo'] . "', '" .
+        $estudiantes['cursoalto'] . "', '" .
+        $estudiantes['cursobajo'] . "', '" .
+        $estudiantes['matriculas'] . "', '" .
+        $estudiantes['examenes'] . "', '" .
+        $estudiantes['interes'] . "', '" .
+        $estudiantes['tutorias'] . "', '" .
+        $estudiantes['dificultad'] . "', '" .
+        $estudiantes['calificacion'] . "', '" .
+        $estudiantes['asistencia'] .
+        "');";
+    echo $query;
+    $base->query($query);
 }

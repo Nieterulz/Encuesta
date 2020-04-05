@@ -38,7 +38,7 @@ function inputRadio($name, $question, $options)
 			<p>
 				<i><b>Asignatura:</b> </i>
 				<input
-					type='number' name='asignatura' min='000' max='999' value='0001'
+					type='number' name='asignatura' min='0000' max='9999' value='0001'
 				/>
 			</p>
 			<p>
@@ -81,7 +81,7 @@ inputRadio($name, $question, $options);
 
 $name = "interes";
 $question = "La asignatura me interesa: ";
-$options = array(' 1', ' 2', ' 3', ' &gt;3');
+$options = array(' Nada', ' Algo', ' Bastante', ' Mucho');
 inputRadio($name, $question, $options);
 
 $name = "tutorias";
@@ -130,7 +130,7 @@ inputRadio($name, $question, $options);
 		maxlength='4'
 		min='0000'
 		max='9999'
-		value='0000'
+		value='0002'
 	/>
 </p>
 <h3>PLANIFICACIÓN DE LA ENSEÑANZA Y APRENDIZAJE</h3>
@@ -262,7 +262,7 @@ inputRadio("dato23", $question, $options);
 
 </div>
 
-<input type='submit' value='Enviar' class='submit'/></form>
-	</form>
+<input type='submit' value='Enviar' class='submit'/>
+</form>
 </body>
 </html>
