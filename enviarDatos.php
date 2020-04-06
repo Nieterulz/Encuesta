@@ -29,9 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $datos[$valor] = getCampo($valor);
     }
 
-    // Vemos los datos que recibimos
-    // verDatos($codigos, $estudiantes, $datos);
-
     // Nos conectamos a la base de datos
     try {
         $base = new PDO('mysql:host=127.0.0.1;dbname=encuestas', 'root', '');
@@ -44,16 +41,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!existeAsignatura($base, $codigos['asignatura'], $codigos['titulacion'])) {
             die("Error al introducir `asignatura`");
         }
-        if (!existeGrupo($base, $codigos['grupo'], $codigos['titulacion'])) {
+        if (!existeGrupo($base, $codigos['grupo'], $codigos['asignatura'])) {
             die("Error al introducir `grupo`");
         }
-        if (!existeProfesor($base, $codigos['profesor'], $codigos['asignatura'])) {
+        if (!existeProfesor($base, $codigos['profesor'], $codigos['grupo'])) {
             die("Error al introducir `profesor`");
         }
 
-        introducirEstudiante($base, $estudiantes);
         introducirEncuesta($base, $codigos);
-        introducirRespuesta($base, $codigos, $datos);
+        introducirRespuesta($base, $codigos, $datos, $estudiantes, $estudiantesN);
 
     } catch (Exception $e) {
         die('Error: ' . $e->GetMessage());
@@ -82,10 +78,10 @@ function getCampo($campo)
 }
 
 // Si existe el profesor devuelve true
-function existeProfesor($base, $id, $id_asignatura)
+function existeProfesor($base, $id, $id_grupo)
 {
     $query = "SELECT `id` FROM `profesores`
-        WHERE `id`=" . $id . " AND `id_asignatura`=" . $id_asignatura . ";";
+        WHERE `id`=" . $id . " AND `id_grupo`=" . $id_grupo . ";";
     $resultado = $base->query($query);
     if (empty($resultado->fetchAll())) {
         return false;
@@ -95,10 +91,10 @@ function existeProfesor($base, $id, $id_asignatura)
 }
 
 // Si existe el grupo devuelve true
-function existeGrupo($base, $id, $id_titulacion)
+function existeGrupo($base, $id, $id_asignatura)
 {
     $query = "SELECT `id` FROM `grupos`
-        WHERE `id`=" . $id . " AND `id_titulacion`=" . $id_titulacion . ";";
+        WHERE `id`=" . $id . " AND `id_asignatura`=" . $id_asignatura . ";";
     $resultado = $base->query($query);
     if (empty($resultado->fetchAll())) {
         return false;
@@ -142,55 +138,37 @@ function verDatos($codigos, $estudiantes, $datos)
     echo "<br>";
 }
 
-function introducirEstudiante($base, $estudiantes)
-{
-    $query = "INSERT INTO `estudiantes` VALUES
-                (NULL, '" .
-        $estudiantes['edad'] . "', '" .
-        $estudiantes['sexo'] . "', '" .
-        $estudiantes['cursoalto'] . "', '" .
-        $estudiantes['cursobajo'] . "', '" .
-        $estudiantes['matriculas'] . "', '" .
-        $estudiantes['examenes'] . "', '" .
-        $estudiantes['interes'] . "', '" .
-        $estudiantes['tutorias'] . "', '" .
-        $estudiantes['dificultad'] . "', '" .
-        $estudiantes['calificacion'] . "', '" .
-        $estudiantes['asistencia'] .
-        "');";
-    $base->query($query);
-}
-
 function introducirEncuesta($base, $codigos)
 {
-    $query = "SELECT MAX(id) FROM `estudiantes`";
-    $estudiante = $base->query($query);
-    $estudiante = $estudiante->fetch();
-    $idEstudiante = $estudiante['0'];
-
     $query = "INSERT INTO `encuestas` VALUES
-                (NULL, '" .
-        $codigos['asignatura'] . "', '" .
-        $codigos['grupo'] . "', '" .
-        $idEstudiante .
-        "');";
+                (NULL," . $codigos['profesor'] . ");";
     $base->query($query);
 }
 
-function introducirRespuesta($base, $codigos, $datos)
+function introducirRespuesta($base, $codigos, $datos, $estudiantes, $estudiantesN)
 {
-    $query = "SELECT MAX(id) FROM `estudiantes`";
-    $estudiante = $base->query($query);
-    $estudiante = $estudiante->fetch();
-    $idEstudiante = $estudiante['0'];
+    $query = "SELECT MAX(id) FROM `encuestas`";
+    $encuesta = $base->query($query);
+    $encuesta = $encuesta->fetch();
+    $idEncuesta = $encuesta['0'];
 
     for ($i = 1; $i <= 23; $i++) {
         $query = "INSERT INTO `respuestas` VALUES
             (NULL, '" .
             $datos['dato' . $i] . "', '" .
-            $idEstudiante . "', '" .
-            $codigos['profesor'] . "', '" .
+            $idEncuesta . "', '" .
             $i . "');";
         $base->query($query);
+    }
+
+    $j = 0;
+    for ($i = 24; $i <= 34; $i++) {
+        $query = "INSERT INTO `respuestas` VALUES
+            (NULL, '" .
+            $estudiantes[$estudiantesN[$j]] . "', '" .
+            $idEncuesta . "', '" .
+            $i . "');";
+        $base->query($query);
+        $j++;
     }
 }

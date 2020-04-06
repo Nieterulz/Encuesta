@@ -14,17 +14,17 @@ function inputRadio($name, $question, $options)
     echo "<i>" . $question . "</i>";
     for ($i = 0; $i < count($options); $i++) {
         $op = $options[$i];
-        echo "<input type='radio' name='" . $name . "' value='" . strtolower($op) . "' checked/>" . $op;
+        echo "<input type='radio' name='" . $name . "' value='" . checkNS(strtolower($op)) . "' checked/>" . $op;
     }
     echo "	</p>";
 }
 
 function checkNS($s)
 {
-    if (strcmp($s, "NS") != 0) {
+    if (strcmp($s, " ns") != 0) {
         return $s;
     }
-    return '0';
+    return -1;
 }
 
 ?>
@@ -41,7 +41,7 @@ function checkNS($s)
 			<p>
 				<i> <b>Titulación:</b> </i>
 				<input
-					type='number' name='titulacion' maxlength='4' min='0000' max='9999' value='0000'
+					type='number' name='titulacion' maxlength='4' min='0000' max='9999' value='0001'
 				/>
 			</p>
 			<p>
@@ -52,7 +52,7 @@ function checkNS($s)
 			</p>
 			<p>
 				<i> <b>Grupo:</b> </i>
-				<input type='number' name='grupo' min='00' max='99' value='06' />
+				<input type='number' name='grupo' min='00' max='99' value='01' />
 			</p>
 		</div>
 	<div class='round2'>
@@ -139,7 +139,7 @@ inputRadio($name, $question, $options);
 		maxlength='4'
 		min='0000'
 		max='9999'
-		value='0002'
+		value='0001'
 	/>
 </p>
 <h3>PLANIFICACIÓN DE LA ENSEÑANZA Y APRENDIZAJE</h3>
