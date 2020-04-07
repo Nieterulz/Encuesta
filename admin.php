@@ -20,7 +20,7 @@
                         maxlength="4"
                         min="0000"
                         max="9999"
-                        value="0000"
+                        value="0001"
                         style="float: right;"
                     />
                 </p>
@@ -44,7 +44,7 @@
                         name="grupo"
                         min="00"
                         max="99"
-                        value="06"
+                        value="01"
                         style="float: right;"
                     />
                 </p>
@@ -56,7 +56,7 @@
                         maxlength="4"
                         min="0000"
                         max="9999"
-                        value="0002"
+                        value="0001"
                         style="float: right;"
                     />
                 </p>

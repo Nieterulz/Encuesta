@@ -14,17 +14,9 @@ function inputRadio($name, $question, $options)
     echo "<i>" . $question . "</i>";
     for ($i = 0; $i < count($options); $i++) {
         $op = $options[$i];
-        echo "<input type='radio' name='" . $name . "' value='" . checkNS(strtolower($op)) . "' checked/>" . $op;
+        echo "<input type='radio' name='" . $name . "' value='" . strtolower($op) . "' checked/>" . $op;
     }
     echo "	</p>";
-}
-
-function checkNS($s)
-{
-    if (strcmp($s, " ns") != 0) {
-        return $s;
-    }
-    return -1;
 }
 
 ?>
