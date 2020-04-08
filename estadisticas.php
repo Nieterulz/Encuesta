@@ -50,11 +50,11 @@ try {
             <label for="edad">Edad: </label>
             <select id="edad" name="edad">
                 <option value=""></option>
-                <option value="≤19">≤19</option>
+                <option value="menor que 20"><20</option>
                 <option value="20-21">20 - 21</option>
                 <option value="22-23">22 - 23</option>
                 <option value="24-25">24 - 25</option>
-                <option value="≥25">≥25</option>
+                <option value="mayor que 25">>25</option>
             </select>
             <br /><br />
 
@@ -100,7 +100,7 @@ try {
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
-                <option value=">3">>3</option>
+                <option value="mas de 3">>3</option>
             </select>
             <br /><br />
 
@@ -111,7 +111,7 @@ try {
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
-                <option value=">3">>3</option>
+                <option value="mas de 3">>3</option>
             </select>
             <br /><br />
 

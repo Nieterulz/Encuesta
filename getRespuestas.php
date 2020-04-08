@@ -12,7 +12,7 @@ try {
 
     $id_profesor = $q[11];
 
-    $query = "SELECT `id` FROM  `encuestas` WHERE `id_profesor`=" . $id_profesor . ";";
+    $query = "SELECT `id` FROM `encuestas` WHERE `id_profesor`=" . $id_profesor . ";";
     $resultado = $base->query($query);
     $resultado2 = $resultado->fetchAll();
     for ($j = 0; $j < count($resultado2); $j++) {
@@ -274,6 +274,15 @@ profesor/a: ";
         $nEncuestados = getEncuestados($base, $id_profesor);
         echo "<h4>Nº DE ESTUDIANTES ENCUESTADOS: " . $nEncuestados . "</h4>";
 
+        $query = "SELECT `id` FROM `encuestas` WHERE `id_profesor`=" . $id_profesor . ";";
+        $resultado = $base->query($query);
+        $resultado2 = $resultado->fetchAll();
+        for ($j = 0; $j < count($resultado2); $j++) {
+            $id_encuestas[$j] = $resultado2[$j][0];
+        }
+
+        $resultado->closeCursor();
+
         $id_pregunta = 24;
         // Edad
         echo "<b style='float: right;'>&le;19 / 20-21 /  22-23 / 24-25 / &ge;25</b>";
@@ -281,11 +290,11 @@ profesor/a: ";
         $campo = "Edad: ";
         echo $campo;
         echo "<a style='float: right;'>" .
-        getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '≤19') . " / " .
+        getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, 'menor que 20') . " / " .
         getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '20-21') . " / " .
         getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '22-23') . " / " .
-        getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '$id_pregunta-25') . " / " .
-        getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '≥25') . "</a>";
+        getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '$24-25') . " / " .
+        getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, 'mayor que 25') . "</a>";
         $id_pregunta++;
         echo "<br><br>";
 
@@ -339,7 +348,7 @@ profesor/a: ";
         getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '1') . " / " .
         getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '2') . " / " .
         getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '3') . " / " .
-        getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '&gt;3') . "</a>";
+        getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, 'mas de 3') . "</a>";
         $id_pregunta++;
         echo "<br><br>";
 
@@ -352,7 +361,7 @@ profesor/a: ";
         getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '1') . " / " .
         getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '2') . " / " .
         getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '3') . " / " .
-        getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, '&gt;3') . "</a>";
+        getPorcentaje($base, $id_encuestas, $nEncuestados, $id_pregunta, 'mas de 3') . "</a>";
         $id_pregunta++;
         echo "<br><br>";
 

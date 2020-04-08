@@ -52,7 +52,7 @@ function inputRadio($name, $question, $options)
 <?php
 $name = "edad";
 $question = "Edad: ";
-$options = array(' <20', ' 20-21', ' 22-23', ' 24-25', ' >25');
+$options = array(' Menor que 20', ' 20-21', ' 22-23', ' 24-25', ' Mayor que 25');
 inputRadio($name, $question, $options);
 
 $name = "sexo";
@@ -72,12 +72,12 @@ inputRadio($name, $question, $options);
 
 $name = "matriculas";
 $question = "Veces que te has matriculado en esta asignatura: ";
-$options = array(' 1', ' 2', ' 3', ' >3');
+$options = array(' 1', ' 2', ' 3', ' Mas de 3');
 inputRadio($name, $question, $options);
 
 $name = "examenes";
 $question = "Veces que te has examinado en esta asignatura: ";
-$options = array(' 1', ' 2', ' 3', ' >3');
+$options = array(' 1', ' 2', ' 3', ' Mas de 3');
 inputRadio($name, $question, $options);
 
 $name = "interes";

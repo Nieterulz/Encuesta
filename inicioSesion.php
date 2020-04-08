@@ -15,7 +15,7 @@
     <body>
         <div class="container col-sm-5" style="margin-left: 25%;">
             <h2>Iniciar sesión</h2>
-            <form class="form-horizontal" action="admin.php" method="post">
+            <form class="form-horizontal" action="login/loguear.php" method="post">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="usuario">
                         Usuario:
@@ -51,6 +51,9 @@
                     </div>
                 </div>
             </form>
+
+
+
         </div>
     </body>
 </html>
