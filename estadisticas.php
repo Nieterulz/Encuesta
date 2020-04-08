@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Estadísticas</title>
         <link rel='stylesheet' href='estadisticas.css' />
+        <script src="scripts.js"></script>
     </head>
     <body>
 		<?php
@@ -39,8 +40,24 @@ try {
     echo "<p class='codigos'><b>Asignatura/a:</b> " . getNombre($base, 'asignaturas', $codigos['asignatura']) . "</p>";
     echo "<p class='codigos'><b>Grupo:</b> " . $codigos['grupo'] . "</p>";
     echo "<p class='codigos'><b>Profesor/a:</b> " . getNombre($base, 'profesores', $codigos['profesor']) . "</p>";
+    echo "</div><br><br>";
 
-    echo "</div>";
+    ?>
+    <form>
+        First name: <input type="text" onkeyup="showHint(this.value)">
+        <select id="OS" name="OS">
+            <option value="1">Windows Vista</option>
+            <option value="2">Windows 7</option>
+            <option value="3">Windows XP</option>
+            <option value="10">Fedora</option>
+            <option value="11">Debian</option>
+            <option value="12">Suse</option>
+        </select>
+    </form>
+    <button onclick="showhint(OS.value)">Try it</button>
+    <p>Suggestions: <span id="txtHint"></span></p>
+
+<?php
 
     echo "<div class='round1' style='margin: 0% 10%;'>";
     echo "<b style='float: right;'>N / MD /  DT</b>";
@@ -52,6 +69,10 @@ try {
         $medias[$i] = getMedia($respuestas[$i], $votantes[$i]);
         $desvTipicas[$i] = getDesvTipica($respuestas[$i], $medias[$i], $votantes[$i]);
     }
+
+    echo "<b><br>VALORACIÓN GLOBAL PROFESOR/A - ASIGNATURA</b>";
+    echo "<b><a style='float: right;'>" . resumenCampos($medias, $desvTipicas, 0, 23) . "</a></b>";
+    echo "<br>";
 
     echo "<b><br>PLANIFICACIÓN DE LA ENSEÑANZA Y APRENDIZAJE</b>";
     echo "<b><a style='float: right;'>" . resumenCampos($medias, $desvTipicas, 0, 1) . "</a></b>";
