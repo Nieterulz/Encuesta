@@ -3,7 +3,6 @@ div.round1 {
     border-radius: 8px;
     padding: 1% 2%;
     margin: 0% 0% 0% 0%;
-    grid-area: 1 / 0 / 3 / 2;
 }
 
 body {

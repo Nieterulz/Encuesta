@@ -21,7 +21,7 @@ h2 {
     margin: 0% 0% 0% 0%;
 }
 
-div.round1 {
+.round1 {
     border: 2px solid orangered;
     border-radius: 8px;
     padding: 1% 2%;

@@ -52,7 +52,7 @@ function inputRadio($name, $question, $options)
 <?php
 $name = "edad";
 $question = "Edad: ";
-$options = array(' &le;19', ' 20-21', ' 22-23', ' 24-25', ' &ge;25');
+$options = array(' <20', ' 20-21', ' 22-23', ' 24-25', ' >25');
 inputRadio($name, $question, $options);
 
 $name = "sexo";
