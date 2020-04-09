@@ -34,6 +34,10 @@ try {
 
     echo "<h2 style='margin: 2% 3% 2% 3%;'>INFORME DE SATISFACCIÓN CON LA DOCENCIA UNIVERSITARIA</h2>";
 
+    echo "<form action='inicioSesion.php'>";
+    echo "<button style='float: right;' class='button'>Cerrar sesión</button>";
+    echo "</form>";
+
     echo "<div class='round1' style='float: left; margin: 0% 0% 0% 5%; padding: 0% 5%;'>";
 
     echo "<p class='codigos'><b>Titulación/a:</b> " . getNombre($base, 'titulaciones', $codigos['titulacion']) . "</p>";
@@ -172,7 +176,7 @@ try {
 
         </form>
         <?php
-echo '<button onclick="mostrarResultados(' . $codigos['profesor'] . ')">Mostrar</button>';
+echo '<button class="button" onclick="mostrarResultados(' . $codigos['profesor'] . ')">Mostrar</button>';
     ?>
         </div>
         <br />

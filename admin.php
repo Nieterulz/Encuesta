@@ -7,8 +7,11 @@
         <link rel="stylesheet" href="encuesta.css" />
     </head>
     <body>
+        <h1 style="margin-left: 8%;">Datos de búsqueda</h1>
+        <form action="encuesta.php">
+            <button style='float: right;' class='button'>Ir a encuesta</button>
+        </form>
         <form action="estadisticas.php" method="post" class="form-group">
-            <h1 style="margin-left: 8%;">Introduzca sus datos</h1>
             <div class="round1" style="margin: 0% 37%;">
                 <p>
                     <i>

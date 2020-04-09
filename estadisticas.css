@@ -12,3 +12,14 @@ body {
 .codigos {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.button {
+    background-color: orangered;
+    border-radius: 15px;
+    color: white;
+    padding: 9px 18px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}

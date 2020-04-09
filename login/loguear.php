@@ -13,8 +13,7 @@ $consulta = mysqli_query($conexion, $q);
 $array = mysqli_fetch_array($consulta);
 
 if ($array['contar'] > 0) {
-    // $_SESSION['username'] = $usuario;
     header("location: ../admin.php");
 } else {
-    echo "<h1>Datos incorrectos<h1>";
+    echo "<center><h1>Datos incorrectos<h1></center>";
 }

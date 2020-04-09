@@ -12,18 +12,31 @@ function inputRadio($name, $question, $options)
 {
     echo "<p class='cuadro'>";
     echo "<i>" . $question . "</i>";
+
+    $r = rand(0, count($options) - 1);
     for ($i = 0; $i < count($options); $i++) {
         $op = $options[$i];
-        echo "<input type='radio' name='" . $name . "' value='" . strtolower($op) . "' checked/>" . $op;
+        echo "<input type='radio' name='" . $name . "' value='" . strtolower($op) . "'";
+        if ($i == $r) {
+            echo " checked";
+        }
+        echo "/>" . $op;
     }
     echo "	</p>";
 }
 
 ?>
-	<h2>
-		ENCUESTA SOBRE LA OPINIÓN DE LOS/AS ESTUDIANTES SOBRE LA LABOR
-		DOCENTE DEL PROFESORADO
-	</h2>
+	<center>
+		<h2 style='float: left; margin: 0% 20% 0% 20%;'>
+			ENCUESTA SOBRE LA OPINIÓN DE LOS/AS ESTUDIANTES SOBRE LA LABOR
+			DOCENTE DEL PROFESORADO
+		</h2>
+	</center>
+
+	<form action="inicioSesion.php">
+		<button style='float: right;' class='button'>Soy administrador</button>
+	</form>
+
 	<h3>
 		CÓDIGO ASIGNATURA
 	</h3>

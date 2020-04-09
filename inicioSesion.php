@@ -13,6 +13,9 @@
         <title>Administrador de encuesta</title>
     </head>
     <body>
+        <form action="encuesta.php">
+            <button type="submit" class="btn btn-default" style='float: right; margin: 5% 5% 0% 0%;'>Ir a encuesta</button>
+        </form>
         <div class="container col-sm-5" style="margin-left: 25%;">
             <h2>Iniciar sesión</h2>
             <form class="form-horizontal" action="login/loguear.php" method="post">
@@ -51,9 +54,6 @@
                     </div>
                 </div>
             </form>
-
-
-
         </div>
     </body>
 </html>
